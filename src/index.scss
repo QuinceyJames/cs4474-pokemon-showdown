@@ -1,0 +1,39 @@
+@import "~bootstrap/scss/bootstrap";
+
+$red: #650501;
+$green: #258000;
+$gray: #adadad;
+$medium-gray: #292929;
+$dark-gray: #0f0f0f;
+$blue: #006fd7;
+$orange: #daa43d;
+$light-red: #ff593b;
+$purple: #8000ed;
+$transparent: rgba(0, 0, 0, 0);
+
+.red {
+  background-color: $red;
+}
+
+.green {
+  background-color: $green;
+}
+
+body {
+  margin: 0;
+  background-color: var(--dark-gray);
+  color: var(--gray);
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.full-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+

@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import {clearAllBodyScrollLocks, disableBodyScroll} from 'body-scroll-lock';
+import {ROOT_ELEMENT_ID} from "./config/constants";
+import {connect} from "react-redux";
+import TeamBuilderView from "./views/team-builder-view";
 
 function App() {
+  React.useEffect(() => {
+    disableBodyScroll(document.getElementById(ROOT_ELEMENT_ID))
+    return clearAllBodyScrollLocks
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <TeamBuilderView/>
   );
 }
 
-export default App;
+const mapStateToProps = ({appState}) => ({appState})
+
+export default connect(mapStateToProps)(App);
