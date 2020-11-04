@@ -1,3 +1,4 @@
+@import "~normalize.css";
 @import "~bootstrap/scss/bootstrap";
 
 $red: #650501;
@@ -28,12 +29,13 @@ body {
 }
 
 .full-screen {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
 }
-
 

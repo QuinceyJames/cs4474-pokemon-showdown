@@ -7,6 +7,7 @@ import {Provider} from "react-redux";
 import store from "./config/store";
 import {ROOT_ELEMENT_ID} from "./config/constants";
 
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
@@ -19,4 +20,4 @@ ReactDOM.render(
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals(console.log);
+reportWebVitals();

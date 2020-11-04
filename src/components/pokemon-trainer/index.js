@@ -2,11 +2,16 @@ import React from "react";
 import "./style.css"
 
 
-function PokemonTrainer() {
+function PokemonTrainer({height = 200}) {
   return (
-    <div className={"pokemon-trainer"}>
-      Pokemon Trainer
-    </div>
+    <img
+      style={{
+        width: "100%",
+        height: height + "px",
+        objectFit: "contain",
+      }}
+      src={"https://cdn.bulbagarden.net/upload/thumb/9/91/Ash_M23.png/150px-Ash_M23.png"}
+    />
   )
 }
 
