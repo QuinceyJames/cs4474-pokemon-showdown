@@ -3,11 +3,9 @@ import {clearAllBodyScrollLocks, disableBodyScroll} from 'body-scroll-lock';
 import {ROOT_ELEMENT_ID} from "./config/constants";
 import {connect} from "react-redux";
 import TeamBuilderView from "./views/team-builder-view";
-import { library as FontAwesomeLibrary } from "@fortawesome/fontawesome-svg-core";
+import {library as FontAwesomeLibrary} from "@fortawesome/fontawesome-svg-core";
 
-import {
-  faPlusSquare
-} from "@fortawesome/free-solid-svg-icons"
+import {faPlusSquare} from "@fortawesome/free-solid-svg-icons"
 
 FontAwesomeLibrary.add(
   faPlusSquare

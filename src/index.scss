@@ -11,21 +11,21 @@
 }
 
 body {
-  margin: 0;
-  background-color: $page-color;
-  color: var(--gray);
-  font-weight: 400;
   font-size: 20px;
+  font-weight: 400;
+  margin: 0;
+  color: var(--gray);
+  background-color: $page-color;
 }
 
 .full-screen {
-  flex: 1;
   display: flex;
+  overflow: hidden;
+  align-items: stretch;
+  flex: 1;
   flex-direction: column;
   justify-content: space-between;
-  align-items: stretch;
-  overflow: hidden;
-  height: 100vh;
   width: 100vw;
+  height: 100vh;
 }
 

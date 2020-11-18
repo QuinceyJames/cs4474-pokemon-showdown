@@ -1,19 +1,19 @@
 $red: #650501;
 $green: #258000;
-$gray: #adadad;
+$gray: #ADADAD;
 $medium-gray: #292929;
-$dark-gray: #0f0f0f;
-$blue: #006fd7;
-$orange: #daa43d;
-$light-red: #ff593b;
-$purple: #8000ed;
+$dark-gray: #0F0F0F;
+$blue: #006FD7;
+$orange: #DAA43D;
+$light-red: #FF593B;
+$purple: #8000ED;
 $transparent: rgba(0, 0, 0, 0);
 
 
 $footer-color: #313131;
-$dark-text: #0e0e0e;
-$light-text: #e0e0e0;
-$page-color: #eeeeee;
+$dark-text: #0E0E0E;
+$light-text: #E0E0E0;
+$page-color: #EEEEEE;
 
 @function get-text-color($color) {
   @if (lightness($color) > 50) {

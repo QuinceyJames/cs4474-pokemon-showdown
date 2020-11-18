@@ -1,4 +1,5 @@
 import api from "pokedex-promise-v2"
+
 const apiInstance = new api()
 
 function getPokemonInfo(id) {

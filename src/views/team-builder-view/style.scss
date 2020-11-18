@@ -2,10 +2,10 @@
 
 .row.content {
   display: flex;
+  align-items: stretch;
   flex: 1;
   flex-direction: column;
   justify-content: space-between;
-  align-items: stretch;
 }
 
 .row.footer {
