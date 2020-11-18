@@ -1,11 +1,11 @@
 import React from "react";
-import "./style.scss"
+import "./button.scss"
 
 
 const Button = ({children, className, ...props}) => (
-  <div className={`button ${className}`} {...props}>
+  <a className={`button ${className}`} {...props}>
     {children}
-  </div>
+  </a>
 );
 
 export default Button

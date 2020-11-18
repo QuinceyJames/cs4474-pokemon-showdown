@@ -1,5 +1,5 @@
 import React from "react";
-import "./style.scss"
+import "./pokemonTrainer.scss"
 
 
 const PokemonTrainer = ({height = 200}) => (

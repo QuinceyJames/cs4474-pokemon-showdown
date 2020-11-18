@@ -1,5 +1,5 @@
 import React from "react";
-import "./style.scss"
+import "./pokemon.scss"
 import {getPokemonInfo} from "../../utils/pokedex";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
@@ -18,31 +18,32 @@ const Platform = () => (
 );
 
 
-const Pokemon = ({id, size = 100}) => {
-  const [info, setInfo] = React.useState("")
-
-  const Avatar = ({}) => {
-    switch (id) {
-      case 0:
-        return (
-          <div className="add-pokemon-button">
-            <FontAwesomeIcon icon="plus-square" size="lg"/>
-          </div>
-        )
-      default:
-        return (
-          <img
-            className={""}
-            src={info.image}
-            style={{
-              height: "100%",
-              width: "100%",
-              objectFit: "contain",
-            }}
-          />
-        )
-    }
+const Avatar = ({id, info}) => {
+  switch (id) {
+    case 0:
+      return (
+        <div className="add-pokemon-button">
+          <FontAwesomeIcon icon="plus-square" size="lg"/>
+        </div>
+      )
+    default:
+      return (
+        <img
+          alt={`picture of ${info.name} pokemon`}
+          className={""}
+          src={info.image}
+          style={{
+            height: "100%",
+            width: "100%",
+            objectFit: "contain",
+          }}
+        />
+      )
   }
+};
+
+const Pokemon = ({id}) => {
+  const [info, setInfo] = React.useState("")
 
   React.useEffect(() => {
     getPokemonInfo(id)
@@ -52,7 +53,7 @@ const Pokemon = ({id, size = 100}) => {
   return (
     <div className={"d-flex flex-column-reverse"}>
       <Platform/>
-      <Avatar/>
+      <Avatar id={id} info={info}/>
     </div>
   )
 };

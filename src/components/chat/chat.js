@@ -1,7 +1,7 @@
 import React from "react";
 import {ChatContainer, Message, MessageInput, MessageList, MessageSeparator} from '@chatscope/chat-ui-kit-react';
 import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css'
-import "./style.scss"
+import "./chat.scss"
 
 const Chat = () => (
   <div className={"chat"}>

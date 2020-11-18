@@ -12,8 +12,13 @@ $transparent: rgba(0, 0, 0, 0);
 
 $footer-color: #313131;
 $dark-text: #0E0E0E;
-$light-text: #E0E0E0;
-$page-color: #EEEEEE;
+$light-text: #EFEFEF;
+$page-color: #424242;
+
+@mixin use-background-color($color) {
+  background-color: $color;
+  color: get-text-color($color);
+}
 
 @function get-text-color($color) {
   @if (lightness($color) > 50) {

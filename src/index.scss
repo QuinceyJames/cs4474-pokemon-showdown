@@ -1,26 +1,18 @@
 @import "~normalize.css";
-@import '~bootstrap/scss/bootstrap.scss';
+@import '~bootstrap/scss/bootstrap';
 @import "variables";
-
-.red {
-  background-color: $red;
-}
-
-.green {
-  background-color: $green;
-}
 
 body {
   font-size: 20px;
   font-weight: 400;
   margin: 0;
-  color: var(--gray);
-  background-color: $page-color;
+
+  @include use-background-color($page-color)
 }
 
 .full-screen {
   display: flex;
-  //overflow: hidden;
+  overflow: hidden;
   align-items: stretch;
   flex: 1;
   flex-direction: column;
