@@ -1,16 +1,6 @@
 @import "~normalize.css";
 @import "~bootstrap/scss/bootstrap";
-
-$red: #650501;
-$green: #258000;
-$gray: #adadad;
-$medium-gray: #292929;
-$dark-gray: #0f0f0f;
-$blue: #006fd7;
-$orange: #daa43d;
-$light-red: #ff593b;
-$purple: #8000ed;
-$transparent: rgba(0, 0, 0, 0);
+@import "variables";
 
 .red {
   background-color: $red;
@@ -22,20 +12,20 @@ $transparent: rgba(0, 0, 0, 0);
 
 body {
   margin: 0;
-  background-color: var(--dark-gray);
+  background-color: $page-color;
   color: var(--gray);
   font-weight: 400;
   font-size: 20px;
 }
 
 .full-screen {
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: stretch;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
 }
 

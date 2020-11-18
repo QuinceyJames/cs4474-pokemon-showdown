@@ -1,16 +1,16 @@
 import React from "react";
 import Row from "react-bootstrap/Row";
-import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
 import Challenges from "../../components/challenges";
 import Ladder from "../../components/ladder";
 import Chat from "../../components/chat";
 import PokemonTrainer from "../../components/pokemon-trainer";
 import Pokemon from "../../components/pokemon";
 import "./style.css"
+import Button from "../../components/button";
+import Container from "react-bootstrap/Container";
 
-const pokemonList = [20, 2, 0, 4, 5, 0]
+const pokemonList = [20, 2, 0, 0, 5, 0]
 
 const PokemonTeam = () => {
   return (
@@ -38,32 +38,37 @@ const PokemonTeam = () => {
 
 function TeamBuilderView() {
   return (
-    <Container fluid className={"full-screen p-4"}>
-      <Row>
-        <Col>
-          <Challenges/>
-        </Col>
+    <Container fluid className={"full-screen"}>
+      <Row className={"content"}>
+        <Row>
+          <Col>
+            <Challenges/>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col>
+            <Ladder/>
+          </Col>
+        </Row>
+
+        <PokemonTeam/>
+
+        <Row>
+          <Col xs={4}>
+            <Col xs={12}>
+              <Button>Solos</Button>
+            </Col>
+            <Col xs={12}>
+              <Button>Play</Button>
+            </Col>
+          </Col>
+        </Row>
       </Row>
 
-      <Row>
-        <Col>
-          <Ladder/>
-        </Col>
-      </Row>
-
-      <PokemonTeam/>
-
-      <Row className={"align-items-end justify-content-between"}>
-        <Col xs={6}>
+      <Row className={"footer"}>
+        <Col xs={5}>
           <Chat/>
-        </Col>
-        <Col xs={4}>
-          <Col xs={12}>
-            <Button>Solos</Button>
-          </Col>
-          <Col xs={12}>
-            <Button>Play</Button>
-          </Col>
         </Col>
       </Row>
     </Container>

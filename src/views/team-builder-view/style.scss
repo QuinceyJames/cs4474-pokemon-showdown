@@ -1,0 +1,13 @@
+@import "../../variables";
+
+.row.content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.row.footer {
+  background-color: $footer-color;
+}

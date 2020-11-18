@@ -1,0 +1,24 @@
+$red: #650501;
+$green: #258000;
+$gray: #adadad;
+$medium-gray: #292929;
+$dark-gray: #0f0f0f;
+$blue: #006fd7;
+$orange: #daa43d;
+$light-red: #ff593b;
+$purple: #8000ed;
+$transparent: rgba(0, 0, 0, 0);
+
+
+$footer-color: #313131;
+$dark-text: #0e0e0e;
+$light-text: #e0e0e0;
+$page-color: #eeeeee;
+
+@function get-text-color($color) {
+  @if (lightness($color) > 50) {
+    @return $dark-text;
+  } @else {
+    @return $light-text;
+  }
+}
