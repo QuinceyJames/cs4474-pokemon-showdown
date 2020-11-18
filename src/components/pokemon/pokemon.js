@@ -1,26 +1,24 @@
 import React from "react";
-import "./style.css"
+import "./style.scss"
 import {getPokemonInfo} from "../../utils/pokedex";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 
-function Platform({}) {
-  return (
-    <img
-      src={"https://www.clker.com/cliparts/H/i/N/a/u/y/ilmenskie-flying-platform-md.png"}
-      className={"p-1"}
-      style={{
-        height: "auto",
-        width: "100%",
-        objectFit: "contain",
-        marginTop: "-25%",
-      }}
-    />
-  )
-}
+const Platform = () => (
+  <img
+    src={"https://www.clker.com/cliparts/H/i/N/a/u/y/ilmenskie-flying-platform-md.png"}
+    className={"p-1"}
+    style={{
+      height: "auto",
+      width: "100%",
+      objectFit: "contain",
+      marginTop: "-25%",
+    }}
+  />
+);
 
 
-function Pokemon({id, size = 100}) {
+const Pokemon = ({id, size = 100}) => {
   const [info, setInfo] = React.useState("")
 
   const Avatar = ({}) => {
@@ -57,6 +55,6 @@ function Pokemon({id, size = 100}) {
       <Avatar/>
     </div>
   )
-}
+};
 
 export default Pokemon

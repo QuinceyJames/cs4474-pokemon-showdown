@@ -1,5 +1,5 @@
 @import "~normalize.css";
-@import "~bootstrap/scss/bootstrap";
+@import '~bootstrap/scss/bootstrap.scss';
 @import "variables";
 
 .red {
@@ -20,7 +20,7 @@ body {
 
 .full-screen {
   display: flex;
-  overflow: hidden;
+  //overflow: hidden;
   align-items: stretch;
   flex: 1;
   flex-direction: column;
