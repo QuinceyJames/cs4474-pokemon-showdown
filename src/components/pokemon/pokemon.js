@@ -5,6 +5,7 @@ import "./pokemon.scss"
 
 const Pokemon = ({id}) => {
   const [info, setInfo] = React.useState("")
+  const [isHovering, setIsHovering] = React.useState("")
 
   React.useEffect(() => {
     getPokemonInfo(id)
@@ -12,24 +13,28 @@ const Pokemon = ({id}) => {
   }, [id])
 
   return (
-    <div className={"pokemon"}>
+    <div
+      className={`pokemon`}
+      onMouseEnter={() => setIsHovering("isHovering")}
+      onAnimationEnd={() => setIsHovering("")}
+    >
       <img
         src={"https://www.clker.com/cliparts/H/i/N/a/u/y/ilmenskie-flying-platform-md.png"}
         className={"platform"}
       />
 
       {id
+
         ? <img
           alt={`picture of ${info.name} pokemon`}
-          className={"avatar"}
+          className={`avatar ${isHovering}`}
           src={info.image}
         />
 
-        :
-          <FontAwesomeIcon
-            className="icon"
-            icon="plus-square"
-          />
+        : <FontAwesomeIcon
+          className={`icon ${isHovering}`}
+          icon="plus-square"
+        />
       }
     </div>
   )

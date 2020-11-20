@@ -8,7 +8,7 @@ import Chat from "../../components/chat/chat";
 import React from "react";
 import PokemonTrainer from "../../components/pokemon-trainer/pokemonTrainer";
 import Pokemon from "../../components/pokemon/pokemon";
-import "./style.scss"
+import "./teamBuilderView.scss"
 
 const pokemonList = [20, 12, 0, 30, 5, 40]
 
@@ -55,7 +55,7 @@ const TeamBuilderView = () => (
 
       <Row className="d-flex justify-content-end">
         <Col xs={4} md={3} xl={2}>
-          <Button color="blue">Solos</Button>
+          <Button color="blue" onClick={() => console.log("heyy")}>Solos</Button>
           <Button type="inverse" color="yellow" height={100}>Play</Button>
         </Col>
       </Row>
