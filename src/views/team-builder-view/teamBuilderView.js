@@ -10,7 +10,7 @@ import PokemonTrainer from "../../components/pokemon-trainer/pokemonTrainer";
 import Pokemon from "../../components/pokemon/pokemon";
 import "./style.scss"
 
-const pokemonList = [20, 2, 0, 0, 5, 0]
+const pokemonList = [20, 12, 0, 30, 5, 40]
 
 const PokemonTeam = () => {
   return (
@@ -53,20 +53,16 @@ const TeamBuilderView = () => (
 
       <PokemonTeam/>
 
-      <Row>
-        <Col xs={4}>
-          <Col xs={12}>
-            <Button>Solos</Button>
-          </Col>
-          <Col xs={12}>
-            <Button>Play</Button>
-          </Col>
+      <Row className="d-flex justify-content-end">
+        <Col xs={4} md={3} xl={2}>
+          <Button color="blue">Solos</Button>
+          <Button type="inverse" color="yellow" height={100}>Play</Button>
         </Col>
       </Row>
     </Row>
 
     <Row className={"footer"}>
-      <Col xs={5}>
+      <Col xs={6}>
         <Chat/>
       </Col>
     </Row>

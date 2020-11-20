@@ -2,13 +2,9 @@ import React from "react";
 import "./pokemonTrainer.scss"
 
 
-const PokemonTrainer = ({height = 200}) => (
+const PokemonTrainer = () => (
   <img
-    style={{
-      width: "100%",
-      height: height + "px",
-      objectFit: "contain",
-    }}
+    className={"pokemon-trainer"}
     src={"https://cdn.bulbagarden.net/upload/thumb/9/91/Ash_M23.png/150px-Ash_M23.png"}
   />
 );

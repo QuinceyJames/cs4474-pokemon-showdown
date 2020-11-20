@@ -1,0 +1,41 @@
+@import "../../variables";
+
+
+@each $name, $color in $colors-map {
+  a.button-#{$name} {
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    flex-grow: 1;
+    justify-content: center;
+    width: 100%;
+    margin: 2px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    text-overflow: ellipsis;
+
+
+    &, &.default {
+      border: 1px solid get-text-color($color);
+      @include use-background-color($color);
+
+      &:hover {
+        @include use-background-color(lighten(clr($color), 15));
+      }
+    }
+
+
+    &.inverse {
+      border: 1px solid get-text-color($color);
+      @include use-background-color(darken(clr($color), 30));
+      border-radius: 3px;
+
+      &:hover {
+        @include use-background-color($color);
+      }
+    }
+
+
+  }
+}

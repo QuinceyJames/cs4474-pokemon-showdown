@@ -1,29 +1,48 @@
-$red: #650501;
-$green: #258000;
-$gray: #ADADAD;
-$medium-gray: #292929;
-$dark-gray: #0F0F0F;
-$blue: #006FD7;
-$orange: #DAA43D;
-$light-red: #FF593B;
-$purple: #8000ED;
-$transparent: rgba(0, 0, 0, 0);
+$colors-map: (
+        red: #650501,
+        green: #258000,
+        gray: #ADADAD,
+        medium-gray: #292929,
+        dark-gray: #0F0F0F,
+        blue: #006FD7,
+        orange: #DAA43D,
+        light-red: #FF593B,
+        purple: #8000ED,
+        yellow: #EEEE0F,
+        transparent: rgba(0, 0, 0, 0),
 
+        footer-color: #313131,
+        dark-text: #0E0E0E,
+        light-text: #EFEFEF,
+        page-color: #424242,
+        pokemon-highlight: #BBAA33,
+        shadow: #222222
+);
 
-$footer-color: #313131;
-$dark-text: #0E0E0E;
-$light-text: #EFEFEF;
-$page-color: #424242;
+@function clr($color) {
+  $value: map-get($colors-map, $color);
+  @if ($value) {
+    @return $value
+  } @else {
+    @return $color
+  }
+}
+
 
 @mixin use-background-color($color) {
-  background-color: $color;
-  color: get-text-color($color);
+  background-color: clr($color);
+  color: get-text-color(clr($color));
 }
 
 @function get-text-color($color) {
-  @if (lightness($color) > 50) {
-    @return $dark-text;
+  @if (lightness(clr($color)) > 30) {
+    @return clr(dark-text);
   } @else {
-    @return $light-text;
+    @return clr(light-text);
   }
+}
+
+@mixin drop-shadow($params) {
+  -webkit-filter: drop-shadow($params);
+  filter: drop-shadow($params);
 }

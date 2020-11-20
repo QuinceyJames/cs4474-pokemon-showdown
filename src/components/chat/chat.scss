@@ -1,0 +1,54 @@
+@import "../../variables";
+
+.chat {
+  $target: &;
+  $chat-history-height: 400px;
+  $input-box-height: 60px;
+
+  //noinspection SassScssUnresolvedVariable
+  @mixin if-active {
+    @at-root #{selector_replace(&, $target, selector_append($target, ":focus-within"))} {
+      @content
+    }
+    @at-root #{selector_replace(&, $target, selector_append($target, ":hover"))} {
+      @content
+    }
+  }
+
+  height: $input-box-height;
+
+  .cs-chat-container {
+    background-color: clr(footer-color);
+
+    .cs-message-input {
+      font-size: 15px;
+      position: relative;
+      top: -$chat-history-height;
+      height: $input-box-height;
+      padding: 10px 0;
+      border: 0;
+      background-color: clr(footer-color);
+
+      @include if-active {
+        background-color: clr(blue);
+      }
+    }
+
+    .cs-message-list {
+      position: relative;
+      top: 0;
+      height: $chat-history-height;
+      padding-top: 20px;
+      transition: all 0.5s ease;
+      opacity: 0;
+      border-radius: 15px 15px 0px 0px;
+
+      @include if-active {
+        top: -$chat-history-height;
+        opacity: 1;
+        -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
+      }
+    }
+  }
+}
