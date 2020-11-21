@@ -25,8 +25,8 @@ const PokemonTeam = () => {
             const transformed = 80 * Math.pow(curve, 2)
 
             return (
-              <Col style={{marginBottom: transformed}} key={index} className={"px-0"}>
-                <Pokemon id={id}/>
+              <Col style={{marginBottom: transformed}} key={index} className={"px-1"}>
+                <Pokemon id={id} avatar platform animate highlight icon/>
               </Col>
             )
           })

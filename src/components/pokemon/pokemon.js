@@ -2,7 +2,7 @@ import React from "react";
 import {getPokemonInfo} from "../../utils/pokedex";
 import "./pokemon.scss"
 
-const Pokemon = ({id, avatar = true, icon = true, platform = true, animate = true, highlight = true}) => {
+const Pokemon = ({id, avatar = false, icon = false, platform = false, animate = false, highlight = false}) => {
   const [info, setInfo] = React.useState("")
   const [isHovering, setIsHovering] = React.useState("")
 
