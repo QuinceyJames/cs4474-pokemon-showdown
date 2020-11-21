@@ -3,7 +3,7 @@ import {getPokemonInfo} from "../../utils/pokedex";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import "./pokemon.scss"
 
-const Pokemon = ({id}) => {
+const Pokemon = ({id, avatar = true, icon = true, platform = true}) => {
   const [info, setInfo] = React.useState("")
   const [isHovering, setIsHovering] = React.useState("")
 
@@ -18,24 +18,21 @@ const Pokemon = ({id}) => {
       onMouseEnter={() => setIsHovering("isHovering")}
       onAnimationEnd={() => setIsHovering("")}
     >
-      <img
+      {platform ? <img
         src={"https://www.clker.com/cliparts/H/i/N/a/u/y/ilmenskie-flying-platform-md.png"}
         className={"platform"}
-      />
+      /> : undefined}
 
-      {id
+      {id && avatar ? <img
+        alt={`${info.name} pokemon`}
+        className={`avatar ${isHovering}`}
+        src={info.image}
+      /> : undefined}
 
-        ? <img
-          alt={`${info.name} pokemon`}
-          className={`avatar ${isHovering}`}
-          src={info.image}
-        />
-
-        : <FontAwesomeIcon
-          className={`icon ${isHovering}`}
-          icon="plus-square"
-        />
-      }
+      {!id && icon ? <FontAwesomeIcon
+        className={`icon ${isHovering}`}
+        icon="plus-square"
+      /> : undefined}
     </div>
   )
 };
