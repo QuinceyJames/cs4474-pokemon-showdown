@@ -1,9 +1,8 @@
 import React from "react";
 import {getPokemonInfo} from "../../utils/pokedex";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import "./pokemon.scss"
 
-const Pokemon = ({id, avatar = true, icon = true, platform = true}) => {
+const Pokemon = ({id, avatar = true, icon = true, platform = true, animate = true, highlight = true}) => {
   const [info, setInfo] = React.useState("")
   const [isHovering, setIsHovering] = React.useState("")
 
@@ -14,13 +13,14 @@ const Pokemon = ({id, avatar = true, icon = true, platform = true}) => {
 
   return (
     <div
-      className={`pokemon`}
-      onMouseEnter={() => setIsHovering("isHovering")}
+      className={`pokemon ${highlight ? "highlight" : ""}`}
+      onMouseEnter={() => setIsHovering(animate && "animate")}
       onAnimationEnd={() => setIsHovering("")}
     >
       {platform ? <img
+        alt={"pokemon trainer"}
         src={"https://www.clker.com/cliparts/H/i/N/a/u/y/ilmenskie-flying-platform-md.png"}
-        className={"platform"}
+        className={`platform`}
       /> : undefined}
 
       {id && avatar ? <img
@@ -29,9 +29,10 @@ const Pokemon = ({id, avatar = true, icon = true, platform = true}) => {
         src={info.image}
       /> : undefined}
 
-      {!id && icon ? <FontAwesomeIcon
+      {!id && icon ? <img
+        alt={"add pokemon"}
         className={`icon ${isHovering}`}
-        icon="plus-square"
+        src={"plus-square-solid.png"}
       /> : undefined}
     </div>
   )
