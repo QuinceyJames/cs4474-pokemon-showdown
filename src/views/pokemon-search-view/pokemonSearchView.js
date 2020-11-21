@@ -15,7 +15,7 @@ const PokemonTeam = () => {
 
         return (
           <Col xs={2} key={index} className={""}>
-            <Pokemon id={id} avatar animate/>
+            <Pokemon id={id} avatar animate name/>
           </Col>
         )
       })

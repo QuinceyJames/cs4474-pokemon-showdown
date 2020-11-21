@@ -36,6 +36,16 @@
         animation: flipY 1s 1;
       }
     }
+
+    &.name {
+      text-align: center;
+      text-transform: capitalize;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 100%;
+      padding: 15% 0 5%;
+    }
   }
 
   &.highlight:hover {
