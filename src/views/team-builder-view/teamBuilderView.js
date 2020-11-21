@@ -37,7 +37,7 @@ const PokemonTeam = () => {
 }
 
 const TeamBuilderView = () => (
-  <Container fluid className={"full-screen"}>
+  <Container fluid className={"full-screen team-builder-view"}>
     <Row className={"content"}>
       <Row>
         <Col>

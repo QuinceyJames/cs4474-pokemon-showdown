@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import ViewSelect from './views/viewSelect';
 import reportWebVitals from './utils/reportWebVitals';
 import {Provider} from "react-redux";
 import store from "./config/store";
@@ -11,7 +11,7 @@ import './index.scss';
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App/>
+      <ViewSelect/>
     </Provider>
   </React.StrictMode>,
   document.getElementById(ROOT_ELEMENT_ID)
