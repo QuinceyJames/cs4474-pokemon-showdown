@@ -26,7 +26,7 @@ const Pokemon = ({id}) => {
       {id
 
         ? <img
-          alt={`picture of ${info.name} pokemon`}
+          alt={`${info.name} pokemon`}
           className={`avatar ${isHovering}`}
           src={info.image}
         />
