@@ -2,45 +2,26 @@
 
 .horizontal-slider {
   position: relative;
-  //width: min-content + 100vw;
+  height: 11rem;
   margin-top: 2rem;
   background-color: rgba(88, 163, 13, 0.65);
   perspective: 600px;
 
-  .next, .prev {
-    $width: 3rem;
-
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: $width;
-    height: 100%;
-    transition: all 0.3s;
-    opacity: 0;
-    background-color: rgba(64, 61, 61, 0.47);
-
-    &.next {
-      left: 100vw;
-      margin-left: -$width;
-    }
-  }
-
-  &:hover {
-    .next, .prev {
-      opacity: 1;
-    }
-  }
-
-
   ul.slider {
+    position: absolute;
     display: flex;
+    height: 100%;
+    margin: 0;
     padding: 0;
+    transition: all .8s ease;
 
+    &.dragging {
+      transition: all 0s;
+    }
 
     li {
       position: relative;
       width: 8rem;
-      height: 11rem;
       margin: 0 10px;
       padding: 0;
       list-style: none;
