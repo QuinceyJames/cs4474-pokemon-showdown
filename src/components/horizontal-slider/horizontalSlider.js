@@ -61,7 +61,7 @@ const HorizontalSlider = () => {
               <Pokemon id={id} avatar name/>
             </div>
 
-            <div className='back'>
+            <div className='back' on>
               fasldkfj sldkfj l;askdjf a;lskdjf lskdjfklajssdh flkjashd fkljhashd fkljashd lkfjhaskdl fjash dkf
             </div>
           </li>
