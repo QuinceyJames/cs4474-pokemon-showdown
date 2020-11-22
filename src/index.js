@@ -6,12 +6,23 @@ import {Provider} from "react-redux";
 import store from "./config/store";
 import {ROOT_ELEMENT_ID} from "./config/constants";
 import './index.scss';
+import Col from "react-bootstrap/Col";
+import Chat from "./components/chat/chat";
+import Row from "react-bootstrap/Row";
+import Container from "react-bootstrap/Container";
 
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <ViewSelect/>
+      <Container fluid className="full-screen">
+        <ViewSelect/>
+        <Row className={"footer"}>
+          <Col xs={6}>
+            <Chat/>
+          </Col>
+        </Row>
+      </Container>
     </Provider>
   </React.StrictMode>,
   document.getElementById(ROOT_ELEMENT_ID)

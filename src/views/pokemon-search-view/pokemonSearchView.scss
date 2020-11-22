@@ -1,34 +1,48 @@
 @import "../../variables";
 
 .pokemon-search-view {
-  &:before {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/2fb2821a-1406-4a1d-9b04-6668f278e944/d843okx-eb13e8e4-0fa4-4fa9-968a-e0f36ff168de.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvMmZiMjgyMWEtMTQwNi00YTFkLTliMDQtNjY2OGYyNzhlOTQ0XC9kODQzb2t4LWViMTNlOGU0LTBmYTQtNGZhOS05NjhhLWUwZjM2ZmYxNjhkZS5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.bhj0Qs9G9h8on8c0mY3t31JfbxhhtPT09e-I3RmEQ1I") no-repeat center;
+
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .pokemon-preview {
+    height: 55vh;
   }
 
-  .row.content {
-    display: flex;
-    align-items: stretch;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .row.footer {
-    background-color: clr(footer-color);
-  }
-
-  .pokemon-card {
+  .file-folder-scroller {
     position: relative;
-    width: 100%;
-    border-radius: 10px;
-    background-color: rgba(247, 255, 0, 0.60);
-    @include drop-shadow(0px 5px 10px clr(shadow));
 
-    perspective: 100px;
+    // TODO: change these values so that they work with any screen height
+    @for $i from 0 through 3 {
+      @for $j from 0 through 3 {
+        &.order-#{$i} .pokemon-file-folder {
+          &:nth-child(#{$j + 1}) {
+            $order: (($j + $i) % 4);
+            transition: all 1s ease-in-out;
+            position: absolute;
+            z-index: ($order + 1) % 4;
+            left: 0;
+            height: 100%;
+            width: 100%;
 
-    &:not(:first-child) {
-      margin-left: 10px;
+            @if ($order == 0) {
+              top: 40rem;
+              opacity: 0;
+            } @else if ($order == 1) {
+              top: 0rem;
+            } @else if($order == 2) {
+              top: 16rem;
+              opacity: 0.3;
+            } @else {
+              top: 40rem;
+              opacity: 0;
+            }
+          }
+        }
+      }
     }
-
   }
+
 }

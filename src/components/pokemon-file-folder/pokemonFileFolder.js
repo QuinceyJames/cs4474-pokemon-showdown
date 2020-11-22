@@ -6,7 +6,7 @@ import Pokemon from "../pokemon/pokemon";
 
 const pokemonList = [20, 12, 10, 30, 5, 40, 37, 23, 12, 43, 32]
 
-const PokemonFileFolder = () => {
+const PokemonFileFolder = ({title}) => {
   const [pos, setPos] = React.useState(0)
   const [dragging, setDragging] = React.useState("")
   const container = React.useRef(null)
@@ -24,7 +24,7 @@ const PokemonFileFolder = () => {
     <div className='pokemon-file-folder'>
 
       <div className="file-folder-tab">
-        Recommended
+        {title || "Title"}
       </div>
 
       <div className='file-folder-contents'
