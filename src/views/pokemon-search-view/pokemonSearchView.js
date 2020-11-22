@@ -3,16 +3,20 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Chat from "../../components/chat/chat";
 import React from "react";
-import HorizontalSlider from "../../components/horizontal-slider/horizontalSlider";
+import PokemonFileFolder from "../../components/pokemon-file-folder/pokemonFileFolder";
 import "./pokemonSearchView.scss"
-
+import Pokemon from "../../components/pokemon/pokemon";
 
 
 const PokemonSearchView = () => (
   <Container fluid className={"full-screen pokemon-search-view"}>
     <Row className={"content"}>
-      <HorizontalSlider/>
-      <HorizontalSlider/>
+      <Col xs={12}>
+        <Pokemon avatar/>
+      </Col>
+      <PokemonFileFolder/>
+      <PokemonFileFolder/>
+      <PokemonFileFolder/>
     </Row>
 
     <Row className={"footer"}>
