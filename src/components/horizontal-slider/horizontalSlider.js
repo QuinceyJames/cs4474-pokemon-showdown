@@ -24,6 +24,8 @@ const HorizontalSlider = () => {
     <div className='horizontal-slider'
          ref={container}
 
+         // TODO: Handle bug on window resize
+
          onMouseDown={event => {
            event.preventDefault()
 
@@ -42,6 +44,7 @@ const HorizontalSlider = () => {
                return getBoundedPos(nextPos)
              })
            }
+
            container.current.addEventListener("mouseup", removeListeners)
            container.current.addEventListener("mouseleave", removeListeners)
 
@@ -52,8 +55,8 @@ const HorizontalSlider = () => {
           ref={slider}
           style={{transform: `translateX(${pos}px)`}}
       >
-        {pokemonList.map((id, i) =>
-          <li key={i}>
+        {pokemonList.map((id, key) =>
+          <li key={key}>
             <div className='front'>
               <Pokemon id={id} avatar name/>
             </div>
