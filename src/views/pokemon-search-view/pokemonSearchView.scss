@@ -26,15 +26,17 @@
             left: 0;
             height: 100%;
             width: 100%;
+            pointer-events: none;
 
             @if ($order == 0) {
               top: 40rem;
               opacity: 0;
             } @else if ($order == 1) {
               top: 0rem;
+              pointer-events: all;
             } @else if($order == 2) {
               top: 16rem;
-              opacity: 0.3;
+              opacity: 0.5;
             } @else {
               top: 40rem;
               opacity: 0;

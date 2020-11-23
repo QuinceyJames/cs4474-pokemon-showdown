@@ -6,6 +6,31 @@ import Pokemon from "../pokemon/pokemon";
 
 const pokemonList = [20, 12, 10, 30, 5, 40, 37, 23, 12, 43, 32]
 
+const PokemonCard = ({id, dragging}) => {
+  const [expand, setExpand] = React.useState({pre: false, post: false});
+
+  React.useEffect(() => setExpand({pre: false, post: false}), [dragging])
+
+  console.log({pre: expand.pre, post:expand.post})
+  return (
+    <li
+      onMouseDown={() => setExpand(({pre, post}) => ({pre: true, post: post}))}
+      onClick={() => setExpand( ({pre, post}) => ({pre: false, post: !post && pre}))}
+      onMouseLeave={() => setExpand({pre: false, post: false})}
+      className={`${expand.post ? "expand" : ""} ${dragging}`}
+
+    >
+      <div className='front'>
+        <Pokemon id={id} avatar name/>
+      </div>
+
+      <div className='back'>
+        fasldkfj sldkfj l;askdjf a;lskdjf lskdjfklajssdh flkjashd fkljhashd fkljashd lkfjhaskdl fjash dkf
+      </div>
+    </li>
+  )
+}
+
 const PokemonFileFolder = ({title}) => {
   const [pos, setPos] = React.useState(0)
   const [dragging, setDragging] = React.useState("")
@@ -62,15 +87,7 @@ const PokemonFileFolder = ({title}) => {
             style={{transform: `translateX(${pos}px)`}}
         >
           {pokemonList.map((id, key) =>
-            <li key={key}>
-              <div className='front'>
-                <Pokemon id={id} avatar name/>
-              </div>
-
-              <div className='back' on>
-                fasldkfj sldkfj l;askdjf a;lskdjf lskdjfklajssdh flkjashd fkljhashd fkljashd lkfjhaskdl fjash dkf
-              </div>
-            </li>
+            <PokemonCard id={id} key={key} dragging={dragging}/>
           )}
         </ul>
       </div>

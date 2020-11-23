@@ -1,41 +1,41 @@
 @import "../../variables";
 
 .pokemon-file-folder {
-    margin-top: 2rem;
-    @include drop-shadow(0.5rem 0.5rem 0.5rem clr(shadow));
+  margin-top: 2rem;
+  @include drop-shadow(0.5rem 0.5rem 0.5rem clr(shadow));
 
   .file-folder-tab {
     width: min-content;
-    padding: 0.5rem 2rem 0;
     margin-left: 0.3rem;
+    padding: 0.5rem 2rem 0;
+    white-space: nowrap;
     border-radius: 1rem 1rem 0 0;
     background-color: rgba(88, 163, 13, 0.65);
-    white-space: nowrap;
   }
 
   .file-folder-contents {
     position: relative;
     height: 12rem;
-    perspective: 600px;
     background-color: rgba(88, 163, 13, 0.65);
+    perspective: 600px;
 
     ul.slider {
+      $slider: &;
+
       position: absolute;
       display: flex;
       height: 100%;
       margin: 0;
       padding: 1rem 1rem;
+      cursor: grab;
       transition: all .8s ease;
-
-      &.dragging {
-        transition: all 0s;
-      }
 
       li {
         position: relative;
         width: 8rem;
         padding: 0;
         list-style: none;
+        cursor: pointer;
         transition: all 0.8s ease, width 0s 0.2s;
 
         + li {
@@ -64,8 +64,19 @@
           }
         }
 
+        &:not(.dragging):not(.expand):hover {
+          transition: all 0.5s ease;
+          transform: scale(1.05);
+        }
+
+        &:not(.dragging):not(.expand):active {
+          transition: all 0.2s ease;
+          transform: scale(0.95);
+        }
+
+
         // TODO: Improve the glitch with this animation
-        &:hover {
+        &.expand {
           z-index: 2;
           transform: scale(1.5);
 
@@ -86,6 +97,19 @@
             }
           }
         }
+      }
+
+      &:active {
+        cursor: grabbing;
+
+        li {
+          cursor: inherit;
+        }
+      }
+
+      &.dragging {
+        cursor: grabbing;
+        transition: all 0s;
       }
     }
   }
