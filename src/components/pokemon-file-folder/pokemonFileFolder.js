@@ -9,16 +9,35 @@ const pokemonList = [20, 12, 10, 30, 5, 40, 37, 23, 12, 43, 32]
 const PokemonCard = ({id, dragging}) => {
   const [expand, setExpand] = React.useState({pre: false, post: false});
 
-  React.useEffect(() => setExpand({pre: false, post: false}), [dragging])
+  React.useEffect(() =>
+    setExpand(
+      {pre: false, post: false}
+    ), [dragging]
+  )
 
-  console.log({pre: expand.pre, post:expand.post})
   return (
     <li
-      onMouseDown={() => setExpand(({pre, post}) => ({pre: true, post: post}))}
-      onClick={() => setExpand( ({pre, post}) => ({pre: false, post: !post && pre}))}
-      onMouseLeave={() => setExpand({pre: false, post: false})}
-      className={`${expand.post ? "expand" : ""} ${dragging}`}
+      onMouseDown={() =>
+        setExpand(
+          ({pre, post}) => ({pre: true, post: post})
+        )
+      }
 
+      onClick={() =>
+        setExpand(
+          ({pre, post}) => ({pre: false, post: !post && pre})
+        )
+      }
+
+      onMouseLeave={() =>
+        setExpand(
+          {pre: false, post: false}
+        )
+      }
+
+      className={
+        `${expand.post ? "expand" : ""} ${dragging}`
+      }
     >
       <div className='front'>
         <Pokemon id={id} avatar name/>
@@ -45,6 +64,22 @@ const PokemonFileFolder = ({title}) => {
     return Math.min(Math.max(pos, range), 0)
   }
 
+  const onMouseMove = event => {
+    setDragging("dragging")
+    setPos(prev => prev + parseInt(event.movementX));
+  }
+
+  const removeListeners = event => {
+    setDragging("")
+    setPos(nextPos => {
+      container.current.removeEventListener("mousemove", onMouseMove)
+      container.current.removeEventListener("mouseleave", removeListeners)
+      container.current.removeEventListener("mouseup", removeListeners)
+
+      return getBoundedPos(nextPos)
+    })
+  }
+
   return (
     <div className='pokemon-file-folder'>
 
@@ -59,22 +94,6 @@ const PokemonFileFolder = ({title}) => {
 
            onMouseDown={event => {
              event.preventDefault()
-
-             const onMouseMove = event => {
-               setDragging("dragging")
-               setPos(prev => prev + parseInt(event.movementX));
-             }
-
-             const removeListeners = event => {
-               setDragging("")
-               setPos(nextPos => {
-                 container.current.removeEventListener("mousemove", onMouseMove)
-                 container.current.removeEventListener("mouseleave", removeListeners)
-                 container.current.removeEventListener("mouseup", removeListeners)
-
-                 return getBoundedPos(nextPos)
-               })
-             }
 
              container.current.addEventListener("mouseup", removeListeners)
              container.current.addEventListener("mouseleave", removeListeners)
