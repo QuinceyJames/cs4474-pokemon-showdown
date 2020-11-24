@@ -16,7 +16,7 @@ a.button {
   padding: 0.5rem;
   border-radius: 3rem;
   text-transform: uppercase;
-  @include drop-shadow(clr(shadow));
+  @include drop-shadow(0.1rem 0.2rem 0.2rem clr(shadow));
 
   &:hover {
     transform: scale(1.05);
