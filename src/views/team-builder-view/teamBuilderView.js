@@ -37,14 +37,9 @@ const PokemonTeam = () => {
 const TeamBuilderView = () => (
   <Row className={"team-builder-view"}>
     <Row>
-      <Col>
-        <Challenges/>
-      </Col>
-    </Row>
-
-    <Row>
-      <Col>
-        <Ladder/>
+      <Col xs={5} md={4} xl={3}>
+        <Button className="challenges" backgroundColor="purple">Challenges</Button>
+        <Button className="ladder" backgroundColor="pink">Ladder</Button>
       </Col>
     </Row>
 
@@ -52,8 +47,8 @@ const TeamBuilderView = () => (
 
     <Row className="d-flex justify-content-end">
       <Col xs={4} md={3} xl={2}>
-        <Button color="blue">Solos</Button>
-        <Button type="inverse" color="yellow" height={100}>Play</Button>
+        <Button className="game-mode">Solos</Button>
+        <Button className="play-game">Play</Button>
       </Col>
     </Row>
   </Row>

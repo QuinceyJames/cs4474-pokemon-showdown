@@ -12,7 +12,7 @@ const ViewSelect = () => {
   }, [])
 
 
-  switch (1) {
+  switch (0) {
     case 1:
       return <PokemonSearchView/>
 
