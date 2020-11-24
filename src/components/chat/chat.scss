@@ -5,6 +5,7 @@
   $chat-history-height: 400px;
   $input-box-height: 60px;
 
+
   //noinspection SassScssUnresolvedVariable
   @mixin if-active {
     @at-root #{selector_replace(&, $target, selector_append($target, ":focus-within"))} {

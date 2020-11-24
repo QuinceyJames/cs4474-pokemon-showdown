@@ -3,6 +3,8 @@ import React, {Children} from "react";
 import PokemonFileFolder from "../../components/pokemon-file-folder/pokemonFileFolder";
 import "./pokemonSearchView.scss"
 import Pokemon from "../../components/pokemon/pokemon";
+import openEditView from "../../features/view-switch/actions/openEditView";
+import {connect} from "react-redux";
 
 const FileFolderScroller = ({children}) => {
   const [fileFolderIndex, setFileFolderIndex] = React.useState(0);
@@ -29,7 +31,7 @@ const FileFolderScroller = ({children}) => {
   )
 }
 
-const PokemonSearchView = () => (
+const PokemonSearchView = ({pokemonIndex}) => (
   <Row className={"pokemon-search-view"}>
 
     <div className="pokemon-preview">
@@ -45,4 +47,6 @@ const PokemonSearchView = () => (
   </Row>
 );
 
-export default PokemonSearchView;
+const mapDispatchToProps = {}
+const mapStateToProps = ({appState}) => ({...appState})
+export default connect(mapStateToProps, mapDispatchToProps)(PokemonSearchView);

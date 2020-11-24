@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import ViewSelect from './views/viewSelect';
 import reportWebVitals from './utils/reportWebVitals';
 import {Provider} from "react-redux";
-import store from "./config/store";
+import store from "./features/store";
 import {ROOT_ELEMENT_ID} from "./config/constants";
 import './index.scss';
 import Col from "react-bootstrap/Col";
