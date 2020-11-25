@@ -46,37 +46,63 @@ const TYPE_CHART = {
 //returns 2 or 4 if super effective
 //else returns 1
 //used for visual effectiveness indicator
-module.exports = {
-    isEffective: function(moveType, pokemonType1, pokemonType2 = '') {
-        effectiveness = TYPE_CHART[moveType][TYPE_ORDER[pokemonType1]];
+function effectiveness(moveType, pokemonType1, pokemonType2 = '') {
+    effectiveness = TYPE_CHART[moveType][TYPE_ORDER[pokemonType1]];
 
-        if (pokemonType2 != '') {
-            effectiveness *= isEffective(moveType, pokemonType2)
-        }
-
-        return effectiveness
+    if (pokemonType2 != '') {
+        effectiveness *= isEffective(moveType, pokemonType2)
     }
+
+    return effectiveness
 }
+
+//TODO: add function for predicting damage dealt 
+//requires knowing damage formula + move base power and types
 
 //used to represent active pokemon
 class Pokemon {
     //moves is list, rest strings
-    //nick is nickname, species is species name
-    constructor(nick, species, moves, type1, type2 = '') {
-        this.nick = nick;
+    //species is species name
+    //condition is an array: [currentHP, maxHP]
+    constructor(species, moves, condition, level, stats/*, type1, type2 = ''*/) {
         this.species = species;
 
-        this.type1 = type1;
-        this.type2 = type2;
+        this.level = level
+        this.stats = stats
+        //server does not return pokemon's type
+        //will have to find another way
+        //this.type1 = type1;
+        //this.type2 = type2;
 
         this.moves = moves;
         
+        this.currHP = condition[0];
+        this.maxHP = condition[1];
+        
     }
 
-    //position is the move 'slot' (1 to 4)    
-    getMove(position) {
-        position -= 1
-        return this.moves[position]
+ 
+    getMove(index) {
+        return this.moves[index]
     }
 
+    //maybe change to separate getters for each stat
+    getStats() {
+        return this.stats
+    }
+
+    getLevel() {
+        return this.level
+    }
+
+    getHP() {
+        return this.currHP
+    }
+
+    getMaxHP() {
+        return this.maxHP
+    }
 }
+
+module.exports.effectiveness = effectiveness;
+module.exports.Pokemon = Pokemon;
