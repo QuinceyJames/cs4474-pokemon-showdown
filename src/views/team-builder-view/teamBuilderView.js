@@ -6,10 +6,10 @@ import PokemonTrainer from "../../components/pokemon-trainer/pokemonTrainer";
 import Pokemon from "../../components/pokemon/pokemon";
 import "./teamBuilderView.scss"
 import {connect} from "react-redux";
-import openEditView from "../../features/view-switch/actions/openEditView";
+import openEditView from "../../features/app-state/actions/openEditView";
 
-const TeamBuilderView = ({pokemonList, openEditView}) => {
-
+const TeamBuilderView = ({pokemonList, activePokemon, openEditView}) => {
+  console.log(activePokemon)
   return (
     <Row className={"team-builder-view"}>
       <Row>

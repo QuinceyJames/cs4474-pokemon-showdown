@@ -1,7 +1,7 @@
-export default function action(pokemon = {id: 0}) {
+export default function action(pokemonIndex, pokemon) {
+  console.log("setPokemon", pokemonIndex, pokemon)
   return {
       type: "SET_POKEMON",
-      payload: pokemon
-
+      payload: {pokemonIndex, pokemon}
   }
 }

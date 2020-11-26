@@ -4,6 +4,6 @@ import React from "react";
 export default function action(pokemonIndex) {
   return {
     type: "SWITCH_VIEW",
-    payload: <PokemonSearchView pokemonIndex={pokemonIndex}/>
+    payload: {currentView: <PokemonSearchView/>, pokemonIndex}
   }
 }
