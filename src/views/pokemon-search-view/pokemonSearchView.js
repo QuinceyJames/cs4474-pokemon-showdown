@@ -8,8 +8,6 @@ const FileFolderScroller = ({children}) => {
   const [fileFolderIndex, setFileFolderIndex] = React.useState(0);
   const size = Children.count(children)
 
-  console.log({fileFolderIndex})
-
   return (
     <div
       className={`file-folder-scroller order-${fileFolderIndex}`}
