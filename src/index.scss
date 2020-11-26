@@ -1,9 +1,12 @@
 @import "~normalize.css";
 @import "~bootstrap/scss/bootstrap";
 @import "variables";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;1,500&display=swap');
+
 
 body {
   font-size: 20px;
+  font-family: 'Roboto', sans-serif;
   font-weight: 400;
   margin: 0;
 
