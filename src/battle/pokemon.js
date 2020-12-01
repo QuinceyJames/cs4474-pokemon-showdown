@@ -240,31 +240,3 @@ async function getType(poke) {
 module.exports.effectiveness = effectiveness;
 module.exports.Pokemon = Pokemon;
 module.exports.damageCalc = damageCalc;
-
-/*
-async function aa() {
-  pokemon1 = new Pokemon(
-    "reshiram",
-    ["blueflare", "toxic", "dracometeor", "roost"],
-    ["283", "283"],
-    78,
-    { atk: 192, def: 201, spa: 279, spd: 232, spe: 185 }
-  );
-
-  await getType(pokemon1);
-
-  pokemon2 = new Pokemon(
-    "politoed",
-    ["rest", "scald", "hypnosis", "perishsong"],
-    ["288", "288"],
-    84,
-    { atk: 131, def: 174, spa: 199, spd: 216, spe: 166 }
-  );
-
-  await getType(pokemon2);
-
-  damageCalc("draco-meteor", pokemon1, pokemon2);
-}
-
-aa();
-*/
