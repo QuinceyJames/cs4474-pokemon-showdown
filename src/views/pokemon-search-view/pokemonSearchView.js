@@ -1,38 +1,19 @@
 import Row from "react-bootstrap/Row";
-import React, {Children} from "react";
+import React from "react";
 import PokemonFileFolder from "../../components/pokemon-file-folder/pokemonFileFolder";
 import "./pokemonSearchView.scss"
 import Pokemon from "../../components/pokemon/pokemon";
 import {connect} from "react-redux";
 import openTeamBuilder from "../../features/app-state/actions/openTeamBuilder";
 import Button from "../../components/button/button";
+import Tabs from "react-bootstrap/Tabs";
+import Tab from "react-bootstrap/Tab";
 
-const FileFolderScroller = ({children}) => {
-  const [fileFolderIndex, setFileFolderIndex] = React.useState(0);
-  const size = Children.count(children)
-
-  return (
-    <div
-      className={`file-folder-scroller order-${fileFolderIndex}`}
-      onWheel={event => setFileFolderIndex(oldIndex => {
-        const deltaY = event.deltaY;
-
-        if (deltaY > 0) {
-          return (oldIndex + 1) % size;
-        } else if (deltaY < 0) {
-          return oldIndex === 0 ? size - 1 : oldIndex - 1;
-        } else {
-          return oldIndex
-        }
-      })}
-
-    >
-      {children}
-    </div>
-  )
-}
+const pokemonTypes = ["Water Type", "Earth Type", "Air Type"]
 
 const PokemonSearchView = ({openTeamBuilder, activePokemon}) => {
+  const [fileFolderIndex, setFileFolderIndex] = React.useState(0);
+
   return (
     <Row className={"pokemon-search-view"}>
 
@@ -42,17 +23,14 @@ const PokemonSearchView = ({openTeamBuilder, activePokemon}) => {
 
       <Button onClick={() => openTeamBuilder()}>Save</Button>
 
-      <FileFolderScroller>
-        {
-          ["Recommended", "Water Type", "Earth Type", "Air Type"]
-            .map((title, key) =>
-              <PokemonFileFolder
-                key={key}
-                title={title}
-              />
-            )
-        }
-      </FileFolderScroller>
+
+      <Tabs activeKey={fileFolderIndex} onSelect={setFileFolderIndex}>
+        {pokemonTypes.map((type, key) => (
+          <Tab title={type} eventKey={key} key={key}>
+            <PokemonFileFolder/>
+          </Tab>
+        ))}
+      </Tabs>
     </Row>
   );
 }

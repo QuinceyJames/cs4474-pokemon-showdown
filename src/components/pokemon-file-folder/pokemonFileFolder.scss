@@ -1,22 +1,8 @@
 @import "../../variables";
 
 .pokemon-file-folder {
-  margin-top: 2rem;
-  @include drop-shadow(0.5rem 0.5rem 0.5rem clr(shadow));
-
-  .file-folder-tab {
-    width: min-content;
-    margin-left: 0.3rem;
-    padding: 0.5rem 2rem 0;
-    white-space: nowrap;
-    border-radius: 1rem 1rem 0 0;
-    background-color: rgba(88, 163, 13, 0.65);
-  }
-
   .file-folder-contents {
-    position: relative;
-    height: 12rem;
-    background-color: rgba(88, 163, 13, 0.65);
+    height: 10rem;
     perspective: 600px;
 
     ul.slider {
@@ -25,8 +11,6 @@
       position: absolute;
       display: flex;
       height: 100%;
-      margin: 0;
-      padding: 1rem 1rem;
       cursor: grab;
       transition: all .8s ease;
 

@@ -36,7 +36,7 @@ const PokemonCard = ({id, dragging, disabled, onClick}) => {
   )
 }
 
-const PokemonFileFolder = ({title, pokemonList, setPokemon, pokemonIndex}) => {
+const PokemonFileFolder = ({pokemonList, setPokemon, pokemonIndex}) => {
   const [pos, setPos] = React.useState(0)
   const [dragging, setDragging] = React.useState("")
   const container = React.useRef(null)
@@ -52,11 +52,6 @@ const PokemonFileFolder = ({title, pokemonList, setPokemon, pokemonIndex}) => {
 
   return (
     <div className='pokemon-file-folder'>
-
-      <div className="file-folder-tab">
-        {title || "Title"}
-      </div>
-
       <div className='file-folder-contents'
            ref={container}
 
