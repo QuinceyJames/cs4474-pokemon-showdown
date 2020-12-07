@@ -15,7 +15,7 @@ const PokemonSearchView = ({openTeamBuilder, activePokemon}) => {
   const [fileFolderIndex, setFileFolderIndex] = React.useState(0);
 
   return (
-    <Row className={"pokemon-search-view"}>
+    <Row className="pokemon-search-view">
 
       <div className="pokemon-preview">
         <Pokemon avatar id={activePokemon?.id} icon platform/>

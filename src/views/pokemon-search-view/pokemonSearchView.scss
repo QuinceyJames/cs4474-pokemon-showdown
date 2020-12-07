@@ -3,52 +3,20 @@
 .pokemon-search-view {
 
   display: flex;
-  align-items: stretch;
   flex-direction: column;
   justify-content: space-between;
+  flex-grow: 1;
+  align-content: center;
 
   .pokemon-preview {
-    height: 55vh;
+    display: flex;
+    flex-grow: 1;
+    align-content: center;
+    align-items: center;
+    align-self: center;
 
     .pokemon {
       width: 10rem;
     }
   }
-
-  .file-folder-scroller {
-    position: relative;
-
-    // TODO: change these values so that they work with any screen height
-    @for $i from 0 through 3 {
-      @for $j from 0 through 3 {
-        &.order-#{$i} .pokemon-file-folder {
-          &:nth-child(#{$j + 1}) {
-            $order: (($j + $i) % 4);
-            transition: all 1s ease-in-out;
-            position: absolute;
-            z-index: ($order + 1) % 4;
-            left: 0;
-            height: 100%;
-            width: 100%;
-            pointer-events: none;
-
-            @if ($order == 0) {
-              top: 40rem;
-              opacity: 0;
-            } @else if ($order == 1) {
-              top: 0rem;
-              pointer-events: all;
-            } @else if($order == 2) {
-              top: 16rem;
-              opacity: 0.5;
-            } @else {
-              top: 40rem;
-              opacity: 0;
-            }
-          }
-        }
-      }
-    }
-  }
-
 }
