@@ -7,9 +7,21 @@ function getPokemonInfo(id) {
     .getPokemonByName(id)
     .then(response => ({
       ...response,
-      image: `https://pokeres.bastionbot.org/images/pokemon/${id}.png`
+      image: response?.sprites["other"]["official-artwork"]["front_default"]
     }))
     .catch(console.error)
 }
 
-export {getPokemonInfo}
+function getPokemonTypes() {
+  return apiInstance
+    .getTypesList()
+    .catch(console.error)
+}
+
+function getPokemonByType(name) {
+  return apiInstance
+    .getPokemonByType(name)
+    .catch(console.log)
+}
+
+export {getPokemonInfo, getPokemonTypes, getPokemonByType}

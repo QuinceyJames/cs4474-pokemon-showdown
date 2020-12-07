@@ -8,7 +8,7 @@ import "./teamBuilderView.scss"
 import {connect} from "react-redux";
 import openEditView from "../../features/app-state/actions/openEditView";
 
-const TeamBuilderView = ({pokemonList, activePokemon, openEditView}) => {
+const TeamBuilderView = ({activePokemonList, activePokemon, openEditView}) => {
   console.log(activePokemon)
   return (
     <Row className={"team-builder-view"}>
@@ -24,9 +24,9 @@ const TeamBuilderView = ({pokemonList, activePokemon, openEditView}) => {
           <PokemonTrainer height={400}/>
 
           <div className={"d-flex flex-nowrap position-absolute align-items-end"}>{
-            pokemonList.map(({id}, index) => {
-              const x = Math.abs(index - ((pokemonList.length - 1) / 2))
-              const curve = Math.sin(((Math.PI * x) / pokemonList.length) - Math.PI)
+            activePokemonList.map(({id}, index) => {
+              const x = Math.abs(index - ((activePokemonList.length - 1) / 2))
+              const curve = Math.sin(((Math.PI * x) / activePokemonList.length) - Math.PI)
               const transformed = 80 * Math.pow(curve, 2)
 
               return (
@@ -54,5 +54,5 @@ const TeamBuilderView = ({pokemonList, activePokemon, openEditView}) => {
 }
 
 const mapDispatchToProps = {openEditView}
-const mapStateToProps = ({appState}) => ({...appState})
+const mapStateToProps = ({appState:{activePokemonList}}) => ({activePokemonList})
 export default connect(mapStateToProps, mapDispatchToProps)(TeamBuilderView);

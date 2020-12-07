@@ -3,10 +3,23 @@ import React from "react";
 import "./pokemonFileFolder.scss"
 import Pokemon from "../pokemon/pokemon";
 import {connect} from "react-redux";
-import setPokemon from "../../features/app-state/actions/setPokemon";
+import setPokemon from "../../features/app-state/actions/setActivePokemon";
+import setActivePokemon from "../../features/app-state/actions/setActivePokemon";
 
 
 const pokemonGroup = [20, 12, 10, 30, 5, 40, 37, 23, 12, 43, 32]
+
+function isPokemonDisabled(candidateID, activeID, activePokemonList) {
+  const teamIDs = activePokemonList.map(({id}) => id)
+
+  if (candidateID === activeID) {
+    return false;
+  } else if (teamIDs.includes(candidateID)) {
+    return true;
+  } else {
+    return false;
+  }
+}
 
 const PokemonCard = ({id, dragging, disabled, onClick}) => {
   const [expand, setExpand] = React.useState({pre: false, post: false});
@@ -36,7 +49,8 @@ const PokemonCard = ({id, dragging, disabled, onClick}) => {
   )
 }
 
-const PokemonFileFolder = ({pokemonList, setPokemon, pokemonIndex}) => {
+const PokemonFileFolder = ({type, activePokemon, activePokemonList, setActivePokemon}) => {
+  const [pokemonList, setPokemonList] = React.useState([1])
   const [pos, setPos] = React.useState(0)
   const [dragging, setDragging] = React.useState("")
   const container = React.useRef(null)
@@ -49,6 +63,10 @@ const PokemonFileFolder = ({pokemonList, setPokemon, pokemonIndex}) => {
 
     return Math.min(Math.max(pos, range), 0)
   }
+
+  React.useEffect(() => {
+
+  }, [type])
 
   return (
     <div className='pokemon-file-folder'>
@@ -86,21 +104,23 @@ const PokemonFileFolder = ({pokemonList, setPokemon, pokemonIndex}) => {
             ref={slider}
             style={{transform: `translateX(${pos}px)`}}
         >
-          {pokemonGroup.map((id, key) =>
-            <PokemonCard
+          {pokemonList.map((candidateID, key) => {
+            const disabled = isPokemonDisabled(candidateID, activePokemon?.id, activePokemonList)
+
+            return <PokemonCard
               key={key}
-              id={id}
+              id={candidateID}
               dragging={dragging}
-              disabled={pokemonList.some(pokemon => pokemon.id === id)}
-              onClick={() => setPokemon(pokemonIndex, {id})}
+              onClick={() => disabled || setActivePokemon({id: candidateID})}
+              disabled={disabled}
             />
-          )}
+          })}
         </ul>
       </div>
     </div>
   );
 }
 
-const mapDispatchToProps = {setPokemon}
-const mapStateToProps = ({appState:{pokemonList, pokemonIndex}}) => ({pokemonList, pokemonIndex})
+const mapDispatchToProps = {setActivePokemon}
+const mapStateToProps = ({appState:{activePokemonList, activePokemon}}) => ({activePokemonList, activePokemon})
 export default connect(mapStateToProps, mapDispatchToProps)(PokemonFileFolder);
