@@ -3,12 +3,13 @@ import React, {Children} from "react";
 import PokemonFileFolder from "../../components/pokemon-file-folder/pokemonFileFolder";
 import "./pokemonSearchView.scss"
 import Pokemon from "../../components/pokemon/pokemon";
+import {connect} from "react-redux";
+import openTeamBuilder from "../../features/app-state/actions/openTeamBuilder";
+import Button from "../../components/button/button";
 
 const FileFolderScroller = ({children}) => {
   const [fileFolderIndex, setFileFolderIndex] = React.useState(0);
   const size = Children.count(children)
-
-  console.log({fileFolderIndex})
 
   return (
     <div
@@ -31,20 +32,31 @@ const FileFolderScroller = ({children}) => {
   )
 }
 
-const PokemonSearchView = () => (
-  <Row className={"pokemon-search-view"}>
+const PokemonSearchView = ({openTeamBuilder, activePokemon}) => {
+  return (
+    <Row className={"pokemon-search-view"}>
 
-    <div className="pokemon-preview">
-      <Pokemon avatar/>
-    </div>
+      <div className="pokemon-preview">
+        <Pokemon avatar id={activePokemon?.id} icon platform/>
+      </div>
 
-    <FileFolderScroller>
-      <PokemonFileFolder title="Recommended"/>
-      <PokemonFileFolder title="Water Type"/>
-      <PokemonFileFolder title="Water Type"/>
-      <PokemonFileFolder title="Earth Type"/>
-    </FileFolderScroller>
-  </Row>
-);
+      <Button onClick={() => openTeamBuilder()}>Save</Button>
 
-export default PokemonSearchView;
+      <FileFolderScroller>
+        {
+          ["Recommended", "Water Type", "Earth Type", "Air Type"]
+            .map((title, key) =>
+              <PokemonFileFolder
+                key={key}
+                title={title}
+              />
+            )
+        }
+      </FileFolderScroller>
+    </Row>
+  );
+}
+
+const mapDispatchToProps = {openTeamBuilder}
+const mapStateToProps = ({appState: {activePokemon}}) => ({activePokemon})
+export default connect(mapStateToProps, mapDispatchToProps)(PokemonSearchView);
