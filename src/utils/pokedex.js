@@ -20,7 +20,7 @@ function getPokemonTypes() {
 
 function getPokemonByType(name) {
   return apiInstance
-    .getPokemonByType(name)
+    .getTypeByName(name)
     .catch(console.log)
 }
 

@@ -1,7 +1,7 @@
 @import "../../variables";
 
 .pokemon-search-view {
-  $root: &;
+  $color: #0F3B1B;
 
   display: flex;
   align-content: center;
@@ -21,23 +21,22 @@
     }
   }
 
+  .nav-item {
+    margin: 1rem 0.1rem 0;
+    text-transform: capitalize;
+    color: #EFEFEF;
+    border-radius: 1rem 1rem 0rem 0rem !important;
+    background-color: $color;
+  }
+
   .nav-tabs {
-    width: 100vw;
     flex-wrap: nowrap;
-    //align-items: stretch;
-    //
-    //> * {
-    //  padding: 0;
-    //  flex-grow: 1;
-    //  text-align: center;
-    //}
+    width: 100vw;
   }
 
   .pokemon-file-folder {
     padding: 1rem 0;
-  }
-
-  .pokemon-type-normal {
-    background-color: #0C76DC;
+    border-top: 1px solid #256519;
+    background-color: $color;
   }
 }

@@ -10,6 +10,8 @@ import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import {getPokemonTypes} from "../../utils/pokedex";
 
+
+
 const PokemonSearchView = ({openTeamBuilder, activePokemon}) => {
   const [fileFolderIndex, setFileFolderIndex] = React.useState(0);
   const [pokemonTypes, setPokemonTypes] = React.useState([]);
@@ -30,12 +32,13 @@ const PokemonSearchView = ({openTeamBuilder, activePokemon}) => {
 
       <Button onClick={() => openTeamBuilder()}>Save</Button>
 
-      <Tabs activeKey={fileFolderIndex} onSelect={setFileFolderIndex} unmountOnExit mountOnEnter>
-        {pokemonTypes.map(({name, url}, key) => (
-          <Tab title={name} eventKey={key} key={key} className={`pokemon-type-${name}`} tabClassName={`pokemon-type-${name}`}>
+      <Tabs activeKey={fileFolderIndex} onSelect={setFileFolderIndex} mountOnEnter>
+        {pokemonTypes.map(({name, url}, key) =>
+          <Tab title={name} eventKey={key} key={key} className={`pokemon-type-${name}`}
+               tabClassName={`pokemon-type-${name}`}>
             <PokemonFileFolder type={name}/>
           </Tab>
-        ))}
+        )}
       </Tabs>
     </Row>
   );

@@ -3,11 +3,8 @@ import React from "react";
 import "./pokemonFileFolder.scss"
 import Pokemon from "../pokemon/pokemon";
 import {connect} from "react-redux";
-import setPokemon from "../../features/app-state/actions/setActivePokemon";
 import setActivePokemon from "../../features/app-state/actions/setActivePokemon";
-
-
-const pokemonGroup = [20, 12, 10, 30, 5, 40, 37, 23, 12, 43, 32]
+import {getPokemonByType} from "../../utils/pokedex";
 
 function isPokemonDisabled(candidateID, activeID, activePokemonList) {
   const teamIDs = activePokemonList.map(({id}) => id)
@@ -50,7 +47,7 @@ const PokemonCard = ({id, dragging, disabled, onClick}) => {
 }
 
 const PokemonFileFolder = ({type, activePokemon, activePokemonList, setActivePokemon}) => {
-  const [pokemonList, setPokemonList] = React.useState([1])
+  const [pokemonList, setPokemonList] = React.useState([])
   const [pos, setPos] = React.useState(0)
   const [dragging, setDragging] = React.useState("")
   const container = React.useRef(null)
@@ -65,8 +62,11 @@ const PokemonFileFolder = ({type, activePokemon, activePokemonList, setActivePok
   }
 
   React.useEffect(() => {
-
+    getPokemonByType(type)
+      .then(({pokemon}) => setPokemonList(pokemon.map(({pokemon}) => pokemon.name)))
   }, [type])
+
+  console.log({pokemonList})
 
   return (
     <div className='pokemon-file-folder'>
