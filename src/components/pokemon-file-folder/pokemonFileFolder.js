@@ -4,7 +4,7 @@ import "./pokemonFileFolder.scss"
 import Pokemon from "../pokemon/pokemon";
 import {connect} from "react-redux";
 import setActivePokemon from "../../features/app-state/actions/setActivePokemon";
-import {getPokemonByType, getPokemonDescription} from "../../utils/pokedex";
+import {getPokemonByType, getPokemonDescription, getPokemonInfo} from "../../utils/pokedex";
 
 function isPokemonDisabled(candidateID, activeID, activePokemonList) {
   const teamIDs = activePokemonList.map(({id}) => id)
@@ -69,7 +69,7 @@ const PokemonFileFolder = ({type, activePokemon, activePokemonList, setActivePok
 
   React.useEffect(() => {
     getPokemonByType(type)
-      .then(({pokemon}) => setPokemonList(pokemon.map(({pokemon}) => pokemon.name)))
+      .then(({pokemon}) => setPokemonList(pokemon.map(({pokemon}) => pokemon.name).slice(0, 15)))
   }, [type])
 
   console.log({pokemonList})
@@ -128,5 +128,5 @@ const PokemonFileFolder = ({type, activePokemon, activePokemonList, setActivePok
 }
 
 const mapDispatchToProps = {setActivePokemon}
-const mapStateToProps = ({appState: {activePokemonList, activePokemon}}) => ({activePokemonList, activePokemon})
+const mapStateToProps = ({appState:{activePokemonList, activePokemon}}) => ({activePokemonList, activePokemon})
 export default connect(mapStateToProps, mapDispatchToProps)(PokemonFileFolder);

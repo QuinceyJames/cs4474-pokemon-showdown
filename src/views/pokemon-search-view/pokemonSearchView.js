@@ -21,8 +21,6 @@ const PokemonSearchView = ({openTeamBuilder, activePokemon}) => {
       .then(({results}) => setPokemonTypes(results))
   }, [])
 
-  console.log({activePokemon})
-
   return (
     <Row className="pokemon-search-view">
 
@@ -32,7 +30,7 @@ const PokemonSearchView = ({openTeamBuilder, activePokemon}) => {
 
       <Button onClick={() => openTeamBuilder()}>Save</Button>
 
-      <Tabs activeKey={fileFolderIndex} onSelect={setFileFolderIndex} mountOnEnter>
+      <Tabs activeKey={fileFolderIndex} onSelect={setFileFolderIndex} mountOnEnter unmountOnExit>
         {pokemonTypes.map(({name, url}, key) =>
           <Tab title={name} eventKey={key} key={key} className={`pokemon-type-${name}`}
                tabClassName={`pokemon-type-${name}`}>

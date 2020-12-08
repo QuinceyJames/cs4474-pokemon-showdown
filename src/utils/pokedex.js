@@ -3,19 +3,12 @@ import api from "pokedex-promise-v2"
 const apiInstance = new api()
 
 function getPokemonInfo(id) {
-  return Promise.all([
-    apiInstance
-      .getPokemonByName(id)
-      .then(response => ({
-        ...response,
-        image: response?.sprites["other"]["official-artwork"]["front_default"]
-      })),
-    apiInstance
-      .getPokemonSpeciesByName(id)
-  ]).then(([pokemon, species]) => ({
-    ...pokemon,
-    description: species["flavor_text_entries"].find(x => x.language.name === "en")["flavor_text"]
-  })).catch(console.error)
+  return apiInstance
+    .getPokemonByName(id)
+    .then(response => ({
+      ...response,
+      image: response?.sprites["other"]["official-artwork"]["front_default"]
+    })).catch(console.error)
 }
 
 function getPokemonTypes() {

@@ -13,6 +13,7 @@
       height: 100%;
       cursor: grab;
       transition: all .8s ease;
+      padding: 0 5rem 0 2rem;
 
       li {
         position: relative;
@@ -43,11 +44,11 @@
 
 
           &.back {
+            font-size: small;
             z-index: -1;
             transform: rotateY(180deg);
-            background: rgb(52, 52, 46);
-            font-size: small;
             text-align: center;
+            background: rgb(52, 52, 46);
           }
         }
 
@@ -84,9 +85,15 @@
                 transform: translateX(1rem);
               }
             }
+
+            &:last-child {
+              .back {
+                transform: translateX(-2rem);
+              }
+            }
           }
         }
-        
+
         &.disabled {
           filter: grayscale(100%);
         }
