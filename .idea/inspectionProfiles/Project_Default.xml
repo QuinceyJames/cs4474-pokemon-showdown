@@ -48,7 +48,7 @@
     <inspection_tool class="LongLine" enabled="true" level="INFORMATION" enabled_by_default="true" />
     <inspection_tool class="MagicNumberJS" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
     <inspection_tool class="NegatedConditionalExpressionJS" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
-    <inspection_tool class="NegatedIfStatementJS" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+    <inspection_tool class="NegatedIfStatementJS" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
     <inspection_tool class="NestedAssignmentJS" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="NestedConditionalExpressionJS" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
     <inspection_tool class="NestedFunctionJS" enabled="true" level="WEAK WARNING" enabled_by_default="true">

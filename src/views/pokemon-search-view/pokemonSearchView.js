@@ -7,20 +7,66 @@ import openTeamBuilder from "../../features/app-state/actions/openTeamBuilder";
 import Button from "../../components/button/button";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
-import {getItemCategories, getPokemonByType, getPokemonTypes} from "../../utils/pokedex";
+import {getItemCategories, getPokemonByType, getPokemonDescription, getPokemonTypes} from "../../utils/pokedex";
 import "./pokemonSearchView.scss"
 import PokemonCard from "../../components/pokemon-card/pokemonCard";
+import setActivePokemon from "../../features/app-state/actions/setActivePokemon";
 
-const PokemonTypeList = ({type}) => {
+const mapDispatchToProps = {openTeamBuilder, setActivePokemon}
+const mapStateToProps = ({appState: {activePokemon}}) => ({activePokemon})
+const connectComponent = connect(mapStateToProps, mapDispatchToProps)
+
+const PokemonDescription = ({pokemon: {name}}) => {
+  const [description, setDescription] = React.useState("");
+
+  React.useEffect(() => {
+    getPokemonDescription(name)
+      .then(setDescription)
+  }, [name])
+
+  return <div className="description">
+    {description}
+  </div>
+}
+
+
+const PokemonTypeList = connectComponent(({type, setActivePokemon}) => {
   const [pokemonList, setPokemonList] = React.useState([])
 
   React.useEffect(() => {
     getPokemonByType(type)
-      .then(({pokemon}) => setPokemonList(pokemon.map(({pokemon}) => pokemon.name).slice(0, 15)))
+      .then(({pokemon}) => setPokemonList(pokemon.map(({pokemon}) => pokemon).slice(0, 15)))
   }, [type])
 
-  return <PokemonFileFolder children={pokemonList.map((id, key) =>
-    <PokemonCard key={key} id={id}/>
+  return <PokemonFileFolder children={pokemonList.map((pokemon, key) =>
+    <PokemonCard key={key} pokemon={pokemon}>
+      <div className='front'>
+        <Pokemon pokemon={pokemon} avatar label/>
+      </div>
+
+      <div className='back'>
+        <PokemonDescription pokemon={pokemon}/>
+
+        <Button onClick={() => setActivePokemon(pokemon)}>Pick Me!</Button>
+      </div>
+    </PokemonCard>
+  )}/>
+})
+
+const PokemonItemList = ({category}) => {
+  const [itemList, setItemList] = React.useState([1, 1])
+
+  // React.useEffect(() => {
+  //   getPo(type)
+  //     .then((pokemon) => setPokemonList(pokemon.map((pokemon) => pokemon).slice(0, 15)))
+  // }, [category])
+
+  return <PokemonFileFolder children={itemList.map((id, key) =>
+    <PokemonCard key={key} id={id}>
+      <div className='front'>
+        <Pokemon avatar name/>
+      </div>
+    </PokemonCard>
   )}/>
 }
 
@@ -40,7 +86,6 @@ const PokemonSearchView = ({openTeamBuilder, activePokemon}) => {
   const [pokemonTypes, setPokemonTypes] = React.useState([]);
   const [itemCategories, setItemCategories] = React.useState([]);
 
-
   React.useEffect(() => {
     getPokemonTypes()
       .then(({results}) => setPokemonTypes(results))
@@ -52,7 +97,7 @@ const PokemonSearchView = ({openTeamBuilder, activePokemon}) => {
     <Row className="pokemon-search-view">
 
       <div className="pokemon-preview">
-        <Pokemon avatar id={activePokemon?.id} icon platform/>
+        <Pokemon pokemon={activePokemon} avatar icon platform/>
       </div>
 
       <Button onClick={() => openTeamBuilder()}>Save</Button>
@@ -61,10 +106,13 @@ const PokemonSearchView = ({openTeamBuilder, activePokemon}) => {
         <PokemonTypeList key={key} type={name}/>
       )}/>
 
+      <TabMapper children={itemCategories.map(({name}, key) =>
+        <PokemonItemList key={key} type={name}/>
+      )}/>
+
     </Row>
   );
 }
 
-const mapDispatchToProps = {openTeamBuilder}
-const mapStateToProps = ({appState: {activePokemon}}) => ({activePokemon})
-export default connect(mapStateToProps, mapDispatchToProps)(PokemonSearchView);
+
+export default connectComponent(PokemonSearchView);

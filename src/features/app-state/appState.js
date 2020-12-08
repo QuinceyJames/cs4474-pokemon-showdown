@@ -4,7 +4,7 @@ import TeamBuilderView from "../../views/team-builder-view/teamBuilderView";
 const initialState = {
   currentView: <TeamBuilderView/>,
   isSideMenuVisible: false,
-  activePokemonList: Array.from(Array(6), () => ({id: 0})),
+  activePokemonList: Array.from(Array(6), () => ({name: ""})),
   activePokemonIndex: -1,
   activePokemon: null
 }

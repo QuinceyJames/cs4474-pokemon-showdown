@@ -1,34 +1,26 @@
 import React from "react";
-import {getPokemonDescription} from "../../utils/pokedex";
-import Pokemon from "../../components/pokemon/pokemon";
-import Button from "../../components/button/button";
 import {connect} from "react-redux";
-import setActivePokemon from "../../features/app-state/actions/setActivePokemon";
 
-function isPokemonDisabled(candidateID, activeID, activePokemonList) {
-  const teamIDs = activePokemonList.map(({id}) => id)
+function isPokemonDisabled(candidate, active, activeList) {
+  const activeNames = activeList.map(pokemon => pokemon?.name)
 
-  if (candidateID === activeID) {
-    return false;
-  } else if (teamIDs.includes(candidateID)) {
+  if (!candidate?.name) {
     return true;
-  } else {
+  } else if (candidate.name === active?.name) {
     return false;
+  } else if (activeNames.includes(candidate.name)) {
+    return true;
   }
+
+  return false;
 }
 
-const PokemonCard = ({id, dragging, activePokemon, activePokemonList, setActivePokemon}) => {
+const PokemonCard = ({pokemon, dragging, activePokemon, activePokemonList, children}) => {
   const [expand, setExpand] = React.useState({pre: false, post: false});
-  const [description, setDescription] = React.useState("");
-  const disabled = isPokemonDisabled(id, activePokemon?.id, activePokemonList)
-  const isSelected = activePokemon.id === id;
+  const disabled = isPokemonDisabled(pokemon, activePokemon, activePokemonList)
+  const isSelected = activePokemon?.name === pokemon?.name;
 
   React.useEffect(() => setExpand({pre: false, post: false}), [dragging])
-
-  React.useEffect(() => {
-    getPokemonDescription(id)
-      .then(setDescription)
-  }, [id])
 
   return (
     <li
@@ -41,21 +33,10 @@ const PokemonCard = ({id, dragging, activePokemon, activePokemonList, setActiveP
       onMouseLeave={() => setExpand({pre: false, post: false})}
       className={`${expand.post ? "expand" : ""} ${dragging} ${disabled ? "disabled" : ""} ${isSelected ? "selected" : ""}`}
     >
-      <div className='front'>
-        <Pokemon id={id} avatar name/>
-      </div>
-
-      <div className='back'>
-        <div className="description">
-          {description}
-        </div>
-
-        <Button onClick={() => disabled || setActivePokemon({id})}>Pick Me!</Button>
-      </div>
+      {children}
     </li>
   )
 }
 
-const mapDispatchToProps = {setActivePokemon}
 const mapStateToProps = ({appState: {activePokemonList, activePokemon}}) => ({activePokemonList, activePokemon})
-export default connect(mapStateToProps, mapDispatchToProps)(PokemonCard);
+export default connect(mapStateToProps)(PokemonCard);

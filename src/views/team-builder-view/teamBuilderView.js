@@ -24,7 +24,7 @@ const TeamBuilderView = ({activePokemonList, activePokemon, openEditView}) => {
           <PokemonTrainer height={400}/>
 
           <div className={"d-flex flex-nowrap position-absolute align-items-end"}>{
-            activePokemonList.map(({id}, index) => {
+            activePokemonList.map((pokemon, index) => {
               const x = Math.abs(index - ((activePokemonList.length - 1) / 2))
               const curve = Math.sin(((Math.PI * x) / activePokemonList.length) - Math.PI)
               const transformed = 80 * Math.pow(curve, 2)
@@ -35,7 +35,7 @@ const TeamBuilderView = ({activePokemonList, activePokemon, openEditView}) => {
                   key={index} className={"px-1"}
                   onClick={() => openEditView(index)}
                 >
-                  <Pokemon id={id} avatar platform animate highlight icon/>
+                  <Pokemon pokemon={pokemon} avatar platform animate highlight icon/>
                 </Col>
               )
             })
