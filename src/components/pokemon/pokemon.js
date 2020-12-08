@@ -19,7 +19,7 @@ const Pokemon = ({id, avatar = false, icon = false, platform = false, animate = 
     >
 
       {name
-        ? <h3 className={`name`}>{info.name}</h3>
+        ? <h3 className={`name`}>{info?.name}</h3>
         : undefined
       }
 
@@ -29,10 +29,10 @@ const Pokemon = ({id, avatar = false, icon = false, platform = false, animate = 
         className={`platform`}
       /> : undefined}
 
-      {id && avatar ? <img
-        alt={`${info.name} pokemon`}
+      {id && avatar && info ? <img
+        alt={`${info?.name} pokemon`}
         className={`avatar ${isHovering}`}
-        src={info.image}
+        src={info?.image}
       /> : undefined}
 
       {!id && icon ? <img

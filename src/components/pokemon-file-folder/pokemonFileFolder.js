@@ -4,7 +4,7 @@ import "./pokemonFileFolder.scss"
 import Pokemon from "../pokemon/pokemon";
 import {connect} from "react-redux";
 import setActivePokemon from "../../features/app-state/actions/setActivePokemon";
-import {getPokemonByType} from "../../utils/pokedex";
+import {getPokemonByType, getPokemonDescription} from "../../utils/pokedex";
 
 function isPokemonDisabled(candidateID, activeID, activePokemonList) {
   const teamIDs = activePokemonList.map(({id}) => id)
@@ -20,8 +20,14 @@ function isPokemonDisabled(candidateID, activeID, activePokemonList) {
 
 const PokemonCard = ({id, dragging, disabled, onClick}) => {
   const [expand, setExpand] = React.useState({pre: false, post: false});
+  const [description, setDescription] = React.useState("");
 
   React.useEffect(() => setExpand({pre: false, post: false}), [dragging])
+
+  React.useEffect(() => {
+    getPokemonDescription(id)
+      .then(setDescription)
+  }, [id])
 
   return (
     <li
@@ -40,7 +46,7 @@ const PokemonCard = ({id, dragging, disabled, onClick}) => {
       </div>
 
       <div className='back'>
-        fasldkfj sldkfj l;askdjf a;lskdjf lskdjfklajssdh flkjashd fkljhashd fkljashd lkfjhaskdl fjash dkf
+        {description}
       </div>
     </li>
   )
@@ -122,5 +128,5 @@ const PokemonFileFolder = ({type, activePokemon, activePokemonList, setActivePok
 }
 
 const mapDispatchToProps = {setActivePokemon}
-const mapStateToProps = ({appState:{activePokemonList, activePokemon}}) => ({activePokemonList, activePokemon})
+const mapStateToProps = ({appState: {activePokemonList, activePokemon}}) => ({activePokemonList, activePokemon})
 export default connect(mapStateToProps, mapDispatchToProps)(PokemonFileFolder);

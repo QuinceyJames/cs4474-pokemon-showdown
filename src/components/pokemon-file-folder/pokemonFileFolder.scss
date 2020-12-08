@@ -41,10 +41,13 @@
           backface-visibility: hidden;
           @include drop-shadow(0px 2px 4px clr(shadow));
 
+
           &.back {
             z-index: -1;
             transform: rotateY(180deg);
             background: rgb(52, 52, 46);
+            font-size: small;
+            text-align: center;
           }
         }
 
