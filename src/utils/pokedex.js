@@ -30,4 +30,10 @@ function getPokemonDescription(id) {
     .catch(console.error)
 }
 
-export {getPokemonInfo, getPokemonTypes, getPokemonByType, getPokemonDescription}
+function getItemCategories() {
+  return apiInstance
+    .getItemCategoriesList()
+    .catch(console.error)
+}
+
+export {getPokemonInfo, getPokemonTypes, getPokemonByType, getPokemonDescription, getItemCategories}
