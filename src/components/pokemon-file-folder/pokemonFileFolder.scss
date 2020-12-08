@@ -11,9 +11,9 @@
       position: absolute;
       display: flex;
       height: 100%;
+      padding: 0 5rem 0 2rem;
       cursor: grab;
       transition: all .8s ease;
-      padding: 0 5rem 0 2rem;
 
       li {
         position: relative;
@@ -21,10 +21,14 @@
         padding: 0;
         list-style: none;
         cursor: pointer;
-        transition: all 0.8s ease, width 0s 0.2s;
+        transition: all 0.8s ease, width 0s 0.2s, background-color 0.2s ease;
 
         + li {
           margin-left: 1.5rem;
+        }
+
+        &.selected .front {
+          background: #006FD7;
         }
 
         .front, .back {
@@ -46,9 +50,15 @@
           &.back {
             font-size: small;
             z-index: -1;
+            display: flex;
+            flex-direction: column;
             transform: rotateY(180deg);
             text-align: center;
             background: rgb(52, 52, 46);
+
+            .description {
+              flex-grow: 1;
+            }
           }
         }
 
@@ -62,7 +72,6 @@
             transition: all 0.2s ease;
             transform: scale(0.95);
           }
-
 
           // TODO: Improve the glitch with this animation
           &.expand {

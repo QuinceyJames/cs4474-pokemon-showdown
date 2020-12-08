@@ -4,7 +4,8 @@ import "./pokemonFileFolder.scss"
 import Pokemon from "../pokemon/pokemon";
 import {connect} from "react-redux";
 import setActivePokemon from "../../features/app-state/actions/setActivePokemon";
-import {getPokemonByType, getPokemonDescription, getPokemonInfo} from "../../utils/pokedex";
+import {getPokemonByType, getPokemonDescription} from "../../utils/pokedex";
+import Button from "../button/button";
 
 function isPokemonDisabled(candidateID, activeID, activePokemonList) {
   const teamIDs = activePokemonList.map(({id}) => id)
@@ -18,7 +19,7 @@ function isPokemonDisabled(candidateID, activeID, activePokemonList) {
   }
 }
 
-const PokemonCard = ({id, dragging, disabled, onClick}) => {
+const PokemonCard = ({id, dragging, disabled, onClick, isSelected}) => {
   const [expand, setExpand] = React.useState({pre: false, post: false});
   const [description, setDescription] = React.useState("");
 
@@ -33,20 +34,23 @@ const PokemonCard = ({id, dragging, disabled, onClick}) => {
     <li
       onMouseDown={() => setExpand(({pre, post}) => ({pre: true, post: post}))}
       onClick={() => {
-        onClick && onClick()
         setExpand(({pre, post}) => {
           return ({pre: false, post: !post && pre})
         })
       }}
       onMouseLeave={() => setExpand({pre: false, post: false})}
-      className={`${expand.post ? "expand" : ""} ${dragging} ${disabled ? "disabled" : ""}`}
+      className={`${expand.post ? "expand" : ""} ${dragging} ${disabled ? "disabled" : ""} ${isSelected ? "selected" : ""}`}
     >
       <div className='front'>
         <Pokemon id={id} avatar name/>
       </div>
 
       <div className='back'>
-        {description}
+        <div className="description">
+          {description}
+        </div>
+
+        <Button onClick={() => onClick && onClick()}>Pick Me!</Button>
       </div>
     </li>
   )
@@ -119,6 +123,7 @@ const PokemonFileFolder = ({type, activePokemon, activePokemonList, setActivePok
               dragging={dragging}
               onClick={() => disabled || setActivePokemon({id: candidateID})}
               disabled={disabled}
+              isSelected={activePokemon.id === candidateID}
             />
           })}
         </ul>
@@ -128,5 +133,5 @@ const PokemonFileFolder = ({type, activePokemon, activePokemonList, setActivePok
 }
 
 const mapDispatchToProps = {setActivePokemon}
-const mapStateToProps = ({appState:{activePokemonList, activePokemon}}) => ({activePokemonList, activePokemon})
+const mapStateToProps = ({appState: {activePokemonList, activePokemon}}) => ({activePokemonList, activePokemon})
 export default connect(mapStateToProps, mapDispatchToProps)(PokemonFileFolder);

@@ -27,6 +27,11 @@
     color: #EFEFEF;
     border-radius: 1rem 1rem 0rem 0rem !important;
     background-color: $color;
+
+    &.active {
+      color: #EFEFEF !important;
+      background: lighten( $color, 10% ) !important;
+    }
   }
 
   .nav-tabs {
@@ -34,9 +39,12 @@
     width: 100vw;
   }
 
+  .tab-pane {
+    border-top: 2px solid #09520C;
+  }
+
   .pokemon-file-folder {
     padding: 1rem 0;
-    border-top: 1px solid #256519;
     background-color: $color;
   }
 }
