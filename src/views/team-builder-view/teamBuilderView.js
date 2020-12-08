@@ -4,9 +4,9 @@ import Button from "../../components/button/button";
 import React from "react";
 import PokemonTrainer from "../../components/pokemon-trainer/pokemonTrainer";
 import Pokemon from "../../components/pokemon/pokemon";
-import "./teamBuilderView.scss"
 import {connect} from "react-redux";
 import openEditView from "../../features/app-state/actions/openEditView";
+import "./teamBuilderView.scss"
 
 const TeamBuilderView = ({activePokemonList, activePokemon, openEditView}) => {
   console.log(activePokemon)

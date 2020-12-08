@@ -1,7 +1,6 @@
 import Row from "react-bootstrap/Row";
 import React from "react";
 import PokemonFileFolder from "../../components/pokemon-file-folder/pokemonFileFolder";
-import "./pokemonSearchView.scss"
 import Pokemon from "../../components/pokemon/pokemon";
 import {connect} from "react-redux";
 import openTeamBuilder from "../../features/app-state/actions/openTeamBuilder";
@@ -9,11 +8,21 @@ import Button from "../../components/button/button";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import {getPokemonTypes} from "../../utils/pokedex";
+import "./pokemonSearchView.scss"
 
+const TabMapper = ({elements}) => {
+  const [fileFolderIndex, setFileFolderIndex] = React.useState(0);
 
+  return <Tabs activeKey={fileFolderIndex} onSelect={setFileFolderIndex} mountOnEnter unmountOnExit>
+    {elements.map((child, key) =>
+      <Tab title={child.props.type} eventKey={key} key={key}>
+        {child}
+      </Tab>
+    )}
+  </Tabs>
+}
 
 const PokemonSearchView = ({openTeamBuilder, activePokemon}) => {
-  const [fileFolderIndex, setFileFolderIndex] = React.useState(0);
   const [pokemonTypes, setPokemonTypes] = React.useState([]);
 
   React.useEffect(() => {
@@ -21,6 +30,7 @@ const PokemonSearchView = ({openTeamBuilder, activePokemon}) => {
       .then(({results}) => setPokemonTypes(results))
   }, [])
 
+  console.log(pokemonTypes)
   return (
     <Row className="pokemon-search-view">
 
@@ -30,14 +40,15 @@ const PokemonSearchView = ({openTeamBuilder, activePokemon}) => {
 
       <Button onClick={() => openTeamBuilder()}>Save</Button>
 
-      <Tabs activeKey={fileFolderIndex} onSelect={setFileFolderIndex} mountOnEnter unmountOnExit>
-        {pokemonTypes.map(({name, url}, key) =>
-          <Tab title={name} eventKey={key} key={key} className={`pokemon-type-${name}`}
-               tabClassName={`pokemon-type-${name}`}>
-            <PokemonFileFolder type={name}/>
-          </Tab>
-        )}
-      </Tabs>
+
+      <TabMapper elements={pokemonTypes.map(({name}) =>
+        <PokemonFileFolder type={name}/>
+      )}/>
+
+      {/*<TabMapper elements={pokemonTypes.map(({name}) =>*/}
+      {/*  <PokemonFileFolder type={name}/>*/}
+      {/*)}/>*/}
+
     </Row>
   );
 }
