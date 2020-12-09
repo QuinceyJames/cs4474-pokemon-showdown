@@ -1,5 +1,5 @@
 @import "~normalize.css";
-@import "~bootstrap/scss/bootstrap";
+//@import "~bootstrap/scss/bootstrap";
 @import "variables";
 
 body {
@@ -24,7 +24,7 @@ body {
     $blur: 4px;
 
     position: absolute;
-    z-index: -1;
+    z-index: -10;
     top: 0;
     left: 0;
     display: block;
@@ -45,11 +45,19 @@ body {
 
   }
 
-  .row.footer {
-    background-color: clr(footer-color);
-    z-index: 100;
+
+  .row {
+    z-index: 1;
+
+    &.footer {
+      z-index: 0;
+      background-color: clr(footer-color);
+      transition: z-index ease-in-out 2s;
+
+      &:hover, &:focus-within {
+        z-index: 1000;
+      }
+    }
   }
-
-
 }
 

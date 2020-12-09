@@ -5,24 +5,28 @@ a.button {
   display: flex;
   overflow: hidden;
   align-items: center;
-  flex-grow: 1;
   justify-content: center;
-  width: 100%;
+  //width: 100%;
   margin: 0.5rem;
+  padding: 0.5rem;
   cursor: pointer;
   transition: all 0.3s ease-out;
   text-decoration: none !important;
-  text-overflow: ellipsis;
-  padding: 0.5rem;
-  border-radius: 3rem;
   text-transform: uppercase;
+  text-overflow: ellipsis;
+  color: white;
   @include drop-shadow(0.1rem 0.2rem 0.2rem clr(shadow));
+
+  border-radius: 3rem;
+  background-color: #0A68C4;
 
   &:hover {
     transform: scale(1.05);
+    color: white;
+    background-color: #006FD7;
   }
 
-    &:active {
-      transform: scale(0.95);
-    }
+  &:active {
+    transform: scale(0.95);
+  }
 }

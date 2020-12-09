@@ -4,26 +4,40 @@ import TeamBuilderView from "../../views/team-builder-view/teamBuilderView";
 const initialState = {
   currentView: <TeamBuilderView/>,
   isSideMenuVisible: false,
-  pokemonList: Array.from(Array(6), () => ({id: 0})),
-  pokemonIndex: -1,
+  activePokemonList: Array.from(Array(6), () => ({name: ""})),
+  activePokemonIndex: -1,
   activePokemon: null
 }
 
 const appState = (state = initialState, {payload, type}) => {
   switch (type) {
-    case "TOGGLE_SIDE_MENU":
+    case "TOGGLE_SIDE_MENU": {
       return {...state, isSideMenuVisible: !state.isSideMenuVisible};
-    case "SET_POKEMON":
-      const {pokemon} = payload;
-      const {pokemonList, pokemonIndex} = state;
-      pokemonList[pokemonIndex] = pokemon
+    }
 
-      return {...state, pokemonList, activePokemon: pokemon}
-    case "SWITCH_VIEW":
-      console.log(payload)
-      return {...state, ...payload};
-    default:
+    case "SET_ACTIVE_POKEMON": {
+      const {activePokemonList, activePokemonIndex, activePokemon} = state;
+      const x = {
+        ...activePokemon,
+        ...payload.activePokemon
+      }
+      activePokemonList[activePokemonIndex] = x
+
+      return {...state, activePokemonList, activePokemon: x}
+    }
+
+    case "SWITCH_VIEW": {
+      return {
+        ...state,
+        activePokemon: state.activePokemonList[payload.activePokemonIndex] || null,
+        activePokemonIndex: payload.activePokemonIndex || -1,
+        ...payload
+      };
+    }
+
+    default: {
       return state;
+    }
   }
 }
 
