@@ -20,8 +20,7 @@ const TeamRoster = ({openTeamBuilder, activePokemon, pokemonList}) => {
     <div className={"d-flex-teamRoster flex-nowrap position-absolute align-items-end"}>{
         pokemonList.map(({id}, index) => {
             const x = Math.abs(index - ((pokemonList.length - 1) / 2))
-            const curve = Math.sin(((Math.PI * x) / pokemonList.length) - Math.PI)
-            const transformed = 80 * Math.pow(curve, 2)
+            const transformed = 80
 
             return (
                 <Col

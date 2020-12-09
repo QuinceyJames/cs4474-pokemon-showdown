@@ -41,6 +41,7 @@ import PokemonTeam from "../../components/pokemon-team/pokemonTeam";
 // }
 
 const BattlePage = ({openTeamBuilder, activePokemon, openEditView}) => {
+
     return (
         <>
         <Row className={"pokemon-trainer-2"}>
@@ -50,9 +51,10 @@ const BattlePage = ({openTeamBuilder, activePokemon, openEditView}) => {
                 <PokemonTrainer2 />
             </Col>
             <Col xs={5} className={"d-flex order-3 p-3 ml-auto"}>
-                <PokemonTeam pokemonList={[1, 2, 3, 4, 5, 6]} />
+            <PokemonTeam pokemonList={[1, 2, 3, 4, 5, 6]} />
             </Col>
             </Row>
+                
         <Row className={"pokemon-trainer-1"}>
             <Col className={"d-flex align-items-end justify-content-start"}>
                 <PokemonTrainerBattle />
@@ -62,7 +64,8 @@ const BattlePage = ({openTeamBuilder, activePokemon, openEditView}) => {
             </Row>
         <Row className={"pokemon-trainer-1-pokemon"}>
             <Col xs={9}  className={"align-items-end justify-content-start"}>
-                <TeamRoster />
+                <TeamRoster 
+                />
             </Col>
             <Col xs={3}  className={"d-flex align-items-center justify-content-center"}>
                 <AttackButton attackName="Vine Whip"attackType="grass" targetType="fire"></AttackButton>
