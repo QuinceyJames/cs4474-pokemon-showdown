@@ -3,12 +3,12 @@ import Col from "react-bootstrap/Col";
 import Challenges from "../../components/challenges/challenges";
 import Ladder from "../../components/ladder/ladder";
 import Button from "../../components/button/button";
-import React, {Children} from "react";
+import React, { Children } from "react";
 import PokemonTrainer from "../../components/pokemon-trainer/pokemonTrainer";
 import Pokemon from "../../components/pokemon/pokemon";
 import openEditView from "../../features/app-state/actions/openEditView";
-import "./battlePage.scss"
-import {connect} from "react-redux";
+import "./battlePage.scss";
+import { connect } from "react-redux";
 import teamBuilderView from "../team-builder-view/teamBuilderView";
 import TeamBuilderView from "../team-builder-view/teamBuilderView";
 import PokemonFileFolder from "../../components/pokemon-file-folder/pokemonFileFolder";
@@ -18,7 +18,6 @@ import PokemonTrainerBattle from "../../components/pokemon-trainer-battle/pokemo
 import AttackButton from "../../components/attack-button/attack-button";
 import openBattlePage from "../../features/app-state/actions/openBattlePage";
 import PokemonTeam from "../../components/pokemon-team/pokemonTeam";
-
 
 // const BattlePage = ({pokemonList, activePokemon, openEditView}) => {
 //     console.log(activePokemon)
@@ -40,38 +39,51 @@ import PokemonTeam from "../../components/pokemon-team/pokemonTeam";
 //     );
 // }
 
-const BattlePage = ({openTeamBuilder, activePokemon, openEditView}) => {
-    return (
-        <>
-        <Row className={"pokemon-trainer-2"}>
-        </Row>
-        <Row>
-            <Col className={"d-flex align-items-stretch justify-content-end"}>
-                <PokemonTrainer2 />
-            </Col>
-            <Col xs={5} className={"d-flex order-3 p-3 ml-auto"}>
-                <PokemonTeam pokemonList={[1, 2, 3, 4, 5, 6]} />
-            </Col>
-            </Row>
-        <Row className={"pokemon-trainer-1"}>
-            <Col className={"d-flex align-items-end justify-content-start"}>
-                <PokemonTrainerBattle />
-            </Col>
-            </Row>
-            <Row>
-            </Row>
-        <Row className={"pokemon-trainer-1-pokemon"}>
-            <Col xs={9}  className={"align-items-end justify-content-start"}>
-                <TeamRoster />
-            </Col>
-            <Col xs={3}  className={"d-flex align-items-center justify-content-center"}>
-                <AttackButton attackName="Vine Whip"attackType="grass" targetType="fire"></AttackButton>
-            </Col>
-        </Row>
-            </>
-    );
-}
+const BattlePage = ({ openTeamBuilder, activePokemon, openEditView }) => {
+  return (
+    <>
+      <Row className={"pokemon-trainer-2"}>
+        <Col className={"d-flex align-items-end justify-content-right"}>
+          <PokemonTrainer2 />
+        </Col>
+        <Col className={"d-flex align-items-end justify-content-right"}>
+          <PokemonTeam pokemonList={[1, 2, 3, 4, 5, 6]} />
+        </Col>
+      </Row>
+      <Row className={"pokemon-trainer-1"}>
+        <Col
+          id={"trainer"}
+          className={"d-flex align-items-end justify-content-start"}
+        >
+          <PokemonTrainerBattle />
+        </Col>
+        <Col className={"d-flex align-items-end justify-content-right"}>
+          <AttackButton
+            attackName="Vine Whip"
+            attackType="grass"
+            targetType="fire"
+            onclick={() =>
+              document.getElementById("trainer").classList.add("attack")
+            }
+            onclick={() =>
+              console.log(document.getElementById("trainer").classList)
+            }
+          ></AttackButton>
+        </Col>
+      </Row>
+      <Row
+        className={
+          "pokemon-trainer-1-pokemon .pokemon-battle > *.platform + .icon {"
+        }
+      >
+        <Col className={"align-items-end justify-content-start"}>
+          <TeamRoster />
+        </Col>
+      </Row>
+    </>
+  );
+};
 
-const mapDispatchToProps = {openEditView}
-const mapStateToProps = ({appState}) => ({...appState})
+const mapDispatchToProps = { openEditView };
+const mapStateToProps = ({ appState }) => ({ ...appState });
 export default connect(mapStateToProps, mapDispatchToProps)(BattlePage);
