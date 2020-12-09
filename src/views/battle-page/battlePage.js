@@ -44,24 +44,28 @@ const BattlePage = ({openTeamBuilder, activePokemon, openEditView}) => {
     return (
         <>
         <Row className={"pokemon-trainer-2"}>
-            <Col className={"d-flex align-items-end justify-content-right"}>
+        </Row>
+        <Row>
+            <Col className={"d-flex align-items-stretch justify-content-end"}>
                 <PokemonTrainer2 />
             </Col>
-            <Col className={"d-flex align-items-end justify-content-right"}>
+            <Col xs={5} className={"d-flex order-3 p-3 ml-auto"}>
                 <PokemonTeam pokemonList={[1, 2, 3, 4, 5, 6]} />
             </Col>
-        </Row>
+            </Row>
         <Row className={"pokemon-trainer-1"}>
             <Col className={"d-flex align-items-end justify-content-start"}>
                 <PokemonTrainerBattle />
             </Col>
-            <Col className={"d-flex align-items-end justify-content-right"}>
-                <AttackButton attackName="Vine Whip"attackType="grass" targetType="fire"></AttackButton>
-            </Col>
-        </Row>
-        <Row className={"pokemon-trainer-1-pokemon .pokemon-battle > *.platform + .icon {"}>
-            <Col className={"align-items-end justify-content-start"}>
+            </Row>
+            <Row>
+            </Row>
+        <Row className={"pokemon-trainer-1-pokemon"}>
+            <Col xs={9}  className={"align-items-end justify-content-start"}>
                 <TeamRoster />
+            </Col>
+            <Col xs={3}  className={"d-flex align-items-center justify-content-center"}>
+                <AttackButton attackName="Vine Whip"attackType="grass" targetType="fire"></AttackButton>
             </Col>
         </Row>
             </>

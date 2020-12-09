@@ -6,7 +6,7 @@ import Pokemon from "../pokemon/pokemon";
 const PokemonTeam = (pokemonList) => (
   <>
     <Container
-      style={{ marginBottom: 50 }}
+      style={{ marginBottom: 60 }}
       key={pokemonList[0]}
       className={"px-1"}
     >
@@ -20,7 +20,7 @@ const PokemonTeam = (pokemonList) => (
       />
     </Container>
     <Container
-      style={{ marginBottom: 50 }}
+      style={{ marginBottom: 60 }}
       key={pokemonList[1]}
       className={"px-1"}
     >
@@ -34,7 +34,7 @@ const PokemonTeam = (pokemonList) => (
       />
     </Container>
     <Container
-      style={{ marginBottom: 50 }}
+      style={{ marginBottom: 60 }}
       key={pokemonList[2]}
       className={"px-1"}
     >
@@ -48,7 +48,7 @@ const PokemonTeam = (pokemonList) => (
       />
     </Container>
     <Container
-      style={{ marginBottom: 50 }}
+      style={{ marginBottom: 60 }}
       key={pokemonList[3]}
       className={"px-1"}
     >
@@ -62,7 +62,7 @@ const PokemonTeam = (pokemonList) => (
       />
     </Container>
     <Container
-      style={{ marginBottom: 50 }}
+      style={{ marginBottom: 20 }}
       key={pokemonList[4]}
       className={"px-1"}
     >
@@ -76,7 +76,7 @@ const PokemonTeam = (pokemonList) => (
       />
     </Container>
     <Container
-      style={{ marginBottom: 50 }}
+      style={{ marginBottom: 60 }}
       key={pokemonList[5]}
       className={"px-1"}
     >
