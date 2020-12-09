@@ -12,13 +12,19 @@
 
   .pokemon-preview {
     display: flex;
-    align-content: center;
-    align-items: center;
-    align-self: center;
+    align-items: flex-end;
+    margin-bottom: 4rem;
     flex-grow: 1;
+    flex-shrink: 1;
+    justify-content: space-between;
 
-    .pokemon {
-      width: 10rem;
+    .col {
+      display: flex;
+      justify-content: center;
+
+      .pokemon {
+        width: 16rem;
+      }
     }
   }
 
@@ -27,15 +33,14 @@
     display: flex;
     flex-wrap: wrap;
     width: 100vw;
-    margin-top: 4rem;
     border-bottom: 0px;
 
     .nav-link {
       flex-grow: 1;
       margin-bottom: -1rem;
       padding-bottom: 1rem;
-      text-transform: capitalize;
       text-align: center;
+      text-transform: capitalize;
       color: #EFEFEF;
       border: 2px solid #80847E;
       border-radius: 1rem 1rem 0rem 0rem;

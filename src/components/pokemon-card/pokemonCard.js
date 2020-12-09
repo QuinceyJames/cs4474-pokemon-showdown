@@ -24,12 +24,7 @@ const PokemonCard = ({pokemon, dragging, activePokemon, activePokemonList, child
 
   return (
     <li
-      onMouseDown={() => setExpand(({pre, post}) => ({pre: true, post: post}))}
-      onClick={() => {
-        setExpand(({pre, post}) => {
-          return ({pre: false, post: !post && pre})
-        })
-      }}
+      onMouseEnter={() => setExpand(({pre, post}) => ({pre: true, post: true}))}
       onMouseLeave={() => setExpand({pre: false, post: false})}
       className={`${expand.post ? "expand" : ""} ${dragging} ${disabled ? "disabled" : ""} ${isSelected ? "selected" : ""}`}
     >

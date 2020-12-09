@@ -16,12 +16,14 @@ const appState = (state = initialState, {payload, type}) => {
     }
 
     case "SET_ACTIVE_POKEMON": {
-      const {activePokemon} = payload;
-      const {activePokemonList, activePokemonIndex} = state;
-      activePokemonList[activePokemonIndex] = activePokemon
-      console.log({activePokemonList, activePokemonIndex, activePokemon})
+      const {activePokemonList, activePokemonIndex, activePokemon} = state;
+      const x = {
+        ...activePokemon,
+        ...payload.activePokemon
+      }
+      activePokemonList[activePokemonIndex] = x
 
-      return {...state, activePokemonList, activePokemon}
+      return {...state, activePokemonList, activePokemon: x}
     }
 
     case "SWITCH_VIEW": {

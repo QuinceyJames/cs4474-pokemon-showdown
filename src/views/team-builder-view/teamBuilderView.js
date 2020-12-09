@@ -35,7 +35,7 @@ const TeamBuilderView = ({activePokemonList, activePokemon, openEditView}) => {
                   key={index} className={"px-1"}
                   onClick={() => openEditView(index)}
                 >
-                  <Pokemon pokemon={pokemon} avatar platform animate highlight icon/>
+                  <Pokemon pokemon={pokemon} avatar platform animate highlight icon item/>
                 </Col>
               )
             })

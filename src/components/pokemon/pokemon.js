@@ -2,7 +2,7 @@ import React from "react";
 import {getPokemonInfo} from "../../utils/pokedex";
 import "./pokemon.scss"
 
-const Pokemon = ({pokemon, avatar, icon, platform, animate, highlight, label}) => {
+const Pokemon = ({pokemon, avatar, icon, platform, animate, highlight, label, item}) => {
   const name = pokemon?.name;
   const [info, setInfo] = React.useState("")
   const [isHovering, setIsHovering] = React.useState("")
@@ -30,6 +30,7 @@ const Pokemon = ({pokemon, avatar, icon, platform, animate, highlight, label}) =
         className={`platform`}
       /> : undefined}
 
+
       {name && avatar && info ? <img
         alt={`${name} pokemon`}
         className={`avatar ${isHovering}`}
@@ -40,6 +41,13 @@ const Pokemon = ({pokemon, avatar, icon, platform, animate, highlight, label}) =
         alt={"add pokemon"}
         className={`icon ${isHovering}`}
         src={"plus-square-solid.png"}
+      /> : undefined}
+
+
+      {item && pokemon.typeImage ? <img
+        alt={"pokemon item"}
+        src={pokemon.typeImage}
+        className={"item"}
       /> : undefined}
     </div>
   )
