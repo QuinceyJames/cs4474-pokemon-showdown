@@ -168,12 +168,11 @@ class Pokemon {
     this.maxHP = condition[1];
 
     //set true when currHP = 0
-    this.isKnockedOut = false;
-  }
-
-  //knocks out a pokemon
-  knockOut() {
-    this.isKnockedOut = True;
+    if (this.currHP <= 0) {
+      this.isKnockedOut == true;
+    } else {
+      this.isKnockedOut = false;
+    }
   }
 
   isKO() {
