@@ -1,0 +1,9 @@
+@import "../../variables";
+
+.team-builder-view {
+  display: flex;
+  align-items: stretch;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+}
