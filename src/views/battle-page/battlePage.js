@@ -3,65 +3,71 @@ import Col from "react-bootstrap/Col";
 import Challenges from "../../components/challenges/challenges";
 import Ladder from "../../components/ladder/ladder";
 import Button from "../../components/button/button";
-import React from "react";
+import React, {Children} from "react";
 import PokemonTrainer from "../../components/pokemon-trainer/pokemonTrainer";
 import Pokemon from "../../components/pokemon/pokemon";
+import openEditView from "../../features/app-state/actions/openEditView";
 import "./battlePage.scss"
+import {connect} from "react-redux";
+import teamBuilderView from "../team-builder-view/teamBuilderView";
+import TeamBuilderView from "../team-builder-view/teamBuilderView";
+import PokemonFileFolder from "../../components/pokemon-file-folder/pokemonFileFolder";
+import TeamRoster from "../../components/teamroster/teamRoster";
+import PokemonTrainer2 from "../../components/pokemon-trainer-2/pokemonTrainer2";
+import PokemonTrainerBattle from "../../components/pokemon-trainer-battle/pokemonTrainerBattle";
+import AttackButton from "../../components/attack-button/attack-button";
+import openBattlePage from "../../features/app-state/actions/openBattlePage";
+import PokemonTeam from "../../components/pokemon-team/pokemonTeam";
 
 
+// const BattlePage = ({pokemonList, activePokemon, openEditView}) => {
+//     console.log(activePokemon)
+//     return (
+//         <Row className={"team-builder-view"}>
+//             <Row className={"justify-content-center"}>
+//                 <Col xs={12} sm={11} md={10} lg={9} xl={7} className={"d-flex align-items-end justify-content-center"}>
+//                     <TeamBuilderView/>
+//                 </Col>
+//             </Row>
+//
+//             <Row className="d-flex justify-content-end">
+//                 <Col xs={4} md={3} xl={2}>
+//                     <Button backgroundColor="blue">Switch</Button>
+//                     <Button backgroundColor="red">Attack</Button>
+//                 </Col>
+//             </Row>
+//         </Row>
+//     );
+// }
 
-const PokemonBattlePage = () => {
-  return (
-    <Row className={"justify-content-center"}>
-      {/*<Col xs={12} sm={11} md={10} lg={9} xl={7} className={"d-flex align-items-end justify-content-center"}>*/}
-      {/*  <PokemonTrainer height={400}/>*/}
-
-      {/*  <div className={"d-flex flex-nowrap position-absolute align-items-end"}>{*/}
-      {/*    pokemonList.map((id, index) => {*/}
-      {/*      const x = Math.abs(index - ((pokemonList.length - 1) / 2))*/}
-      {/*      const curve = Math.sin(((Math.PI * x) / pokemonList.length) - Math.PI)*/}
-      {/*      const transformed = 80 * Math.pow(curve, 2)*/}
-            return (
-              <Col style={{marginBottom: transformed}} key={index} className={"px-1"}>
-                <Pokemon id={id} avatar platform animate highlight icon/>
-              </Col>
-            )
-
-            return (
-            <Col style={{marginBottom: transformed}} key={index} className={"px-1"}>
-                <Pokemon id={id} avatar platform animate highlight icon/>
+const BattlePage = ({openTeamBuilder, activePokemon, openEditView}) => {
+    return (
+        <>
+        <Row className={"pokemon-trainer-2"}>
+            <Col className={"d-flex align-items-end justify-content-right"}>
+                <PokemonTrainer2 />
             </Col>
-        )
-          })
-      {/*  }</div>*/}
-      {/*</Col>*/}
-    </Row>
-  )
+            <Col className={"d-flex align-items-end justify-content-right"}>
+                <PokemonTeam pokemonList={[1, 2, 3, 4, 5, 6]} />
+            </Col>
+        </Row>
+        <Row className={"pokemon-trainer-1"}>
+            <Col className={"d-flex align-items-end justify-content-start"}>
+                <PokemonTrainerBattle />
+            </Col>
+            <Col className={"d-flex align-items-end justify-content-right"}>
+                <AttackButton attackName="Vine Whip"attackType="grass" targetType="fire"></AttackButton>
+            </Col>
+        </Row>
+        <Row className={"pokemon-trainer-1-pokemon .pokemon-battle > *.platform + .icon {"}>
+            <Col className={"align-items-end justify-content-start"}>
+                <TeamRoster />
+            </Col>
+        </Row>
+            </>
+    );
 }
 
-const BattlePage = () => (
-  <Row className={"team-builder-view"}>
-    <Row>
-      <Col>
-        <Challenges/>
-      </Col>
-    </Row>
-
-    <Row>
-      <Col>
-        <Ladder/>
-      </Col>
-    </Row>
-
-    <PokemonTeam/>
-
-    <Row className="d-flex justify-content-end">
-      <Col xs={4} md={3} xl={2}>
-        <Button color="blue">Solos</Button>
-        <Button type="inverse" color="yellow" height={100}>Play</Button>
-      </Col>
-    </Row>
-  </Row>
-);
-
-export default BattlePage;
+const mapDispatchToProps = {openEditView}
+const mapStateToProps = ({appState}) => ({...appState})
+export default connect(mapStateToProps, mapDispatchToProps)(BattlePage);

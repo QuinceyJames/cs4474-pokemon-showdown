@@ -1,6 +1,6 @@
 @import "../../variables";
 
-.pokemon-trainer {
+.pokemon-trainer-battle {
   @include drop-shadow(0px 10px 10px clr(shadow));
   height: 60vh;
 }

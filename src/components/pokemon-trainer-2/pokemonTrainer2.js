@@ -1,12 +1,12 @@
 import React from "react";
-import "./pokemonTrainer.scss"
+import "./pokemonTrainer2.scss"
 
 
-const PokemonTrainer = () => (
+const PokemonTrainer2 = () => (
   <img
     className={"pokemon-trainer-2"}
-    src={"https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pngkit.com%2Fbigpic%2Fu2e6q8q8a9i1t4q8%2F&psig=AOvVaw2iLHFtqNGIzsRautHPf3Tq&ust=1607613476147000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPit74iZwe0CFQAAAAAdAAAAABAD"}
+    src={"https://www.pngkit.com/png/full/341-3417132_cute-pokemon-trainer-boys-pokemon-sage-characters.png"}
   />
 );
 
-export default PokemonTrainer
+export default PokemonTrainer2
