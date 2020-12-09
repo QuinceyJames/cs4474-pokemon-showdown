@@ -6,16 +6,20 @@ import PokemonTrainer from "../../components/pokemon-trainer/pokemonTrainer";
 import Pokemon from "../../components/pokemon/pokemon";
 import {connect} from "react-redux";
 import openEditView from "../../features/app-state/actions/openEditView";
+import openBattlePage from "../../features/app-state/actions/openBattlePage";
+import openChallengesView from "../../features/app-state/actions/openChallengesView";
+import openTeamBuilder from "../../features/app-state/actions/openTeamBuilder";
+import openLadderView from "../../features/app-state/actions/openLadderView";
 import "./teamBuilderView.scss"
 
-const TeamBuilderView = ({activePokemonList, activePokemon, openEditView}) => {
+const TeamBuilderView = ({activePokemonList, activePokemon, openEditView, openBattlePage,openLadderView, openChallengesView}) => {
   console.log(activePokemon)
   return (
     <Row className={"team-builder-view"}>
       <Row>
         <Col xs={5} md={4} xl={3}>
-          <Button>Challenges</Button>
-          <Button>Ladder</Button>
+          <Button onClick={() => openChallengesView()}>Challenges</Button>
+          <Button onClick={() => openLadderView()}>Ladder</Button>
         </Col>
       </Row>
 
@@ -45,14 +49,15 @@ const TeamBuilderView = ({activePokemonList, activePokemon, openEditView}) => {
 
       <Row className="d-flex justify-content-end">
         <Col xs={4} md={3} xl={2}>
-          <Button>Solos</Button>
-          <Button>Play</Button>
+          <Button backgroundColor="blue">Solos</Button>
+          <Button backgroundColor="red" onClick={() => openBattlePage()}>Play</Button>
         </Col>
       </Row>
     </Row>
   );
 }
 
-const mapDispatchToProps = {openEditView}
+
+const mapDispatchToProps = {openEditView, openBattlePage,openChallengesView, openLadderView}
 const mapStateToProps = ({appState:{activePokemonList}}) => ({activePokemonList})
 export default connect(mapStateToProps, mapDispatchToProps)(TeamBuilderView);
