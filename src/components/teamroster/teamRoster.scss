@@ -1,0 +1,24 @@
+@import "../../variables";
+
+.d-flex-teamRoster {
+  margin-bottom: 10px;
+  display: flex !important;
+
+
+.pokemon-search-view {
+
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .pokemon-preview {
+    height: 55vh;
+
+    .pokemon {
+      width: 10rem;
+    }
+  }
+
+}
+}

@@ -1,17 +1,52 @@
-/* Error: Can't find stylesheet to import.
- *   ,
- * 2 | @import "~bootstrap/scss/bootstrap";
- *   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
- *   '
- *   index.scss 2:9  root stylesheet */
-
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
-  display: block;
-  padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: "Error: Can't find stylesheet to import.\a   \2577 \a 2 \2502  @import \"~bootstrap/scss/bootstrap\";\a   \2502          ^^^^^^^^^^^^^^^^^^^^^^^^^^^\a   \2575 \a   index.scss 2:9  root stylesheet";
+@import "~normalize.css";
+body {
+  font-size: 20px;
+  font-weight: 400;
+  margin: 0;
+  background-color: #424242;
+  color: #EFEFEF;
 }
+
+.full-screen {
+  display: flex;
+  overflow: hidden;
+  align-items: stretch;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100vw;
+  height: 100vh;
+}
+.full-screen:before {
+  position: absolute;
+  z-index: -10;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  content: "";
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/2fb2821a-1406-4a1d-9b04-6668f278e944/d843okx-eb13e8e4-0fa4-4fa9-968a-e0f36ff168de.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvMmZiMjgyMWEtMTQwNi00YTFkLTliMDQtNjY2OGYyNzhlOTQ0XC9kODQzb2t4LWViMTNlOGU0LTBmYTQtNGZhOS05NjhhLWUwZjM2ZmYxNjhkZS5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.bhj0Qs9G9h8on8c0mY3t31JfbxhhtPT09e-I3RmEQ1I") no-repeat center;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  -webkit-background-size: cover;
+  background-size: cover;
+  -webkit-filter: blur(4px);
+  -moz-filter: blur(4px);
+  -o-filter: blur(4px);
+  -ms-filter: blur(4px);
+  filter: blur(4px);
+}
+.full-screen .row {
+  z-index: 1;
+}
+.full-screen .row.footer {
+  z-index: 0;
+  background-color: #313131;
+  transition: z-index ease-in-out 2s;
+}
+.full-screen .row.footer:hover, .full-screen .row.footer:focus-within {
+  z-index: 1000;
+}
+
+/*# sourceMappingURL=index.css.map */

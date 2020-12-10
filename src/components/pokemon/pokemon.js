@@ -2,14 +2,15 @@ import React from "react";
 import {getPokemonInfo} from "../../utils/pokedex";
 import "./pokemon.scss"
 
-const Pokemon = ({id, avatar = false, icon = false, platform = false, animate = false, highlight = false, name = false}) => {
+const Pokemon = ({pokemon, avatar, icon, platform, animate, highlight, label, item}) => {
+  const name = pokemon?.name;
   const [info, setInfo] = React.useState("")
   const [isHovering, setIsHovering] = React.useState("")
 
   React.useEffect(() => {
-    getPokemonInfo(id)
+    getPokemonInfo(name)
       .then(setInfo)
-  }, [id])
+  }, [name])
 
   return (
     <div
@@ -18,8 +19,8 @@ const Pokemon = ({id, avatar = false, icon = false, platform = false, animate = 
       onAnimationEnd={() => setIsHovering("")}
     >
 
-      {name
-        ? <h3 className={`name`}>{info.name}</h3>
+      {label
+        ? <h3 className={`name`}>{name}</h3>
         : undefined
       }
 
@@ -29,16 +30,24 @@ const Pokemon = ({id, avatar = false, icon = false, platform = false, animate = 
         className={`platform`}
       /> : undefined}
 
-      {id && avatar ? <img
-        alt={`${info.name} pokemon`}
+
+      {name && avatar && info ? <img
+        alt={`${name} pokemon`}
         className={`avatar ${isHovering}`}
-        src={info.image}
+        src={info?.image}
       /> : undefined}
 
-      {!id && icon ? <img
+      {!name && icon ? <img
         alt={"add pokemon"}
         className={`icon ${isHovering}`}
         src={"plus-square-solid.png"}
+      /> : undefined}
+
+
+      {item && pokemon.typeImage ? <img
+        alt={"pokemon item"}
+        src={pokemon.typeImage}
+        className={"item"}
       /> : undefined}
     </div>
   )
