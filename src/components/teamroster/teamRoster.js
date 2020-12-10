@@ -9,15 +9,13 @@ import openTeamBuilder from "../../features/app-state/actions/openTeamBuilder";
 
 
 const TeamRoster = ({openTeamBuilder, activePokemon, activePokemonList}) => {
-  console.log(activePokemon)
-  return (
-    <Row className={"justify-content-left"}>
-      <Col xs={12} sm={11} md={10} lg={9} xl={7} className={"d-flex align-items-end justify-content-right"}>
-        <div className={"d-flex-teamRoster flex-nowrap position-absolute align-items-end"}>{
-          activePokemonList.map(({id}, index) => {
-            const x = Math.abs(index - ((activePokemonList.length - 1) / 2))
-            const curve = Math.sin(((Math.PI * x) / activePokemonList.length) - Math.PI)
-            const transformed = 80 * Math.pow(curve, 2)
+    return (
+        <Row className={"justify-content-left"}>
+            <Col xs={12} sm={11} md={10} lg={9} xl={7} className={"d-flex align-items-end justify-content-right"}>
+    <div className={"d-flex-teamRoster flex-nowrap position-absolute align-items-end"}>{
+        pokemonList.map(({id}, index) => {
+            const x = Math.abs(index - ((pokemonList.length - 1) / 2))
+            const transformed = 80
 
             return (
               <Col
