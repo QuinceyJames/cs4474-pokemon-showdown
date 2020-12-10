@@ -2,8 +2,8 @@ import React from "react";
 import "./button.scss"
 
 
-const Button = ({children, className, height, onClick, ...props}) => (
-  <a className={`button ${className}`} style={{height: height}} onClick={onClick} {...props}>
+const Button = ({children, disabled, className, height, backgroundColor, color, onClick, ...props}) => (
+  <a className={`button ${className} ${disabled ? "disabled" : ""}`} style={{backgroundColor, color, height: height}} onClick={onClick} {...props}>
     {children}
   </a>
 );

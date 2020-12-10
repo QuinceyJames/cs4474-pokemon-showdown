@@ -10,8 +10,9 @@ import Tab from "react-bootstrap/Tab";
 import {
   getItemByName,
   getItemCategories,
-  getItemCategoryByName, getMoveByName,
-  getMoveCategoriesList, getMoveDescription,
+  getItemCategoryByName,
+  getMoveCategoriesList,
+  getMoveDescription,
   getPokemonByType,
   getPokemonDescription,
   getPokemonInfo,
@@ -21,6 +22,7 @@ import "./pokemonSearchView.scss"
 import PokemonCard from "../../components/pokemon-card/pokemonCard";
 import setActivePokemon from "../../features/app-state/actions/setActivePokemon";
 import Col from "react-bootstrap/Col";
+import StatsGraph from "../../components/stats-graph/statsGraph";
 
 const mapDispatchToProps = {openTeamBuilder, setActivePokemon}
 const mapStateToProps = ({appState: {activePokemon}}) => ({activePokemon})
@@ -69,8 +71,6 @@ const MoveDescription = ({name}) => {
       .then(setDescription)
   }, [name])
 
-  console.log({description})
-
   return <div className="description">
     {description}
   </div>
@@ -118,10 +118,12 @@ const PokemonMoveList = connectComponent(({setActivePokemon, activePokemon}) => 
   return <PokemonFileFolder children={moveList.map(({name}, key) =>
     <PokemonCard key={key} pokemon={{name}}>
       <div className='front'>
+        <h3>
+          {name}
+        </h3>
       </div>
 
       <div className='back'>
-
         <MoveDescription name={name}/>
         <Button>Pick Me!</Button>
       </div>
@@ -206,6 +208,7 @@ const PokemonSearchView = ({openTeamBuilder, activePokemon}) => {
     <Row className="pokemon-search-view">
       <Row className="pokemon-preview">
         <Col xs={3}>
+          <StatsGraph id={2}/>
           {step === 0 ? undefined : <Button height={80} onClick={() => prev()}>Previous</Button>}
         </Col>
 
@@ -214,7 +217,10 @@ const PokemonSearchView = ({openTeamBuilder, activePokemon}) => {
         </Col>
 
         <Col xs={3}>
-          <Button height={80} onClick={() => next()}>Next</Button>
+          <Button height={80} disabled={
+            step === 0 && !activePokemon.name
+            || step === 1 && !activePokemon.type
+          } onClick={() => next()}>Next</Button>
         </Col>
       </Row>
 

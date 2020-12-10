@@ -3,7 +3,7 @@ import "./statsGraph.scss";
 import {summarizePokemonStats , getPokemonInfo} from "../../utils/pokedex"
 import Chart from 'chart.js'
 
-export default class statsGraph extends React.Component {
+export default class StatsGraph extends React.Component {
 
   chartRef = React.createRef();
 

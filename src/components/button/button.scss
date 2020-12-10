@@ -6,7 +6,6 @@ a.button {
   overflow: hidden;
   align-items: center;
   justify-content: center;
-  //width: 100%;
   margin: 0.5rem;
   padding: 0.5rem;
   cursor: pointer;
@@ -24,6 +23,11 @@ a.button {
     transform: scale(1.05);
     color: white;
     background-color: #006FD7;
+  }
+
+  &.disabled {
+    pointer-events: none;
+    filter: grayscale(100%);
   }
 
   &:active {
