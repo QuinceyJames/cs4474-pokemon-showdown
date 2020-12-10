@@ -4,3 +4,19 @@
   @include drop-shadow(0px 10px 10px clr(shadow));
   height: 60vh;
 }
+
+.pokemon-bulbasaur-battle {
+  @include drop-shadow(0px 5px 5px clr(shadow));
+  height: 15vh;
+  margin-bottom: 20vh;
+  margin-left: 30vh;
+
+}
+
+.pokemon-pikachu-battle {
+  @include drop-shadow(0px 5px 5px clr(shadow));
+  height: 10vh;
+  margin-bottom: 30vh;
+  margin-left: 30vh;
+
+}

@@ -18,6 +18,7 @@ import PokemonTrainerBattle from "../../components/pokemon-trainer-battle/pokemo
 import AttackButton from "../../components/attack-button/attack-button";
 import openBattlePage from "../../features/app-state/actions/openBattlePage";
 import PokemonTeam from "../../components/pokemon-team/pokemonTeam";
+import openTeamBuilder from "../../features/app-state/actions/openTeamBuilder"
 
 
 // const BattlePage = ({pokemonList, activePokemon, openEditView}) => {
@@ -44,30 +45,38 @@ const BattlePage = ({openTeamBuilder, activePokemon, openEditView}) => {
 
     return (
         <>
+        <Row>
+            <Col xs={3}>
+        <Button onClick={()=>openTeamBuilder()} backgroundColor="#546BAB">
+        <img className="logoIcon" src="https://vignette.wikia.nocookie.net/pokemon-fano/images/6/6f/Poke_Ball.png/revision/latest/scale-to-width-down/340?cb=20140520015336" ></img>
+        Home
+    </Button>
+    </Col>
+    </Row>
         <Row className={"pokemon-trainer-2"}>
         </Row>
         <Row>
             <Col className={"d-flex align-items-stretch justify-content-end"}>
                 <PokemonTrainer2 />
             </Col>
-            <Col xs={5} className={"d-flex order-3 p-3 ml-auto"}>
+            <Col xs={4} className={"d-flex order-3 p-3 ml-auto"}>
             <PokemonTeam pokemonList={[1, 2, 3, 4, 5, 6]} />
             </Col>
             </Row>
                 
         <Row className={"pokemon-trainer-1"}>
-            <Col className={"d-flex align-items-end justify-content-start"}>
+            <Col style={{marginTop: "20px"}} style={{marginBottom: "10px"}}   className={"d-flex align-items-end justify-content-start"}>
                 <PokemonTrainerBattle />
             </Col>
             </Row>
             <Row>
             </Row>
         <Row className={"pokemon-trainer-1-pokemon"}>
-            <Col xs={9}  className={"align-items-end justify-content-start"}>
-                <TeamRoster 
+            <Col xs={9} style={{marginTop: "100px"}}   className={"align-items-end justify-content-start"}>
+                <TeamRoster
                 />
             </Col>
-            <Col xs={3}  className={"d-flex align-items-center justify-content-center"}>
+            <Col xs={3} style={{marginBottom: "50px"}}  className={"d-flex align-items-center justify-content-center"}>
                 <AttackButton attackName="Vine Whip"attackType="grass" targetType="fire"></AttackButton>
             </Col>
         </Row>
@@ -75,6 +84,6 @@ const BattlePage = ({openTeamBuilder, activePokemon, openEditView}) => {
     );
 }
 
-const mapDispatchToProps = {openEditView}
+const mapDispatchToProps = {openEditView, openTeamBuilder}
 const mapStateToProps = ({appState}) => ({...appState})
 export default connect(mapStateToProps, mapDispatchToProps)(BattlePage);
