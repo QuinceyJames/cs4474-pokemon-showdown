@@ -7,9 +7,81 @@ function getPokemonInfo(id) {
     .getPokemonByName(id)
     .then(response => ({
       ...response,
-      image: `https://pokeres.bastionbot.org/images/pokemon/${id}.png`
-    }))
+      image: response?.sprites["other"]["official-artwork"]["front_default"]
+    })).catch(console.error)
+}
+
+function getPokemonTypes() {
+  return apiInstance
+    .getTypesList()
     .catch(console.error)
 }
 
-export {getPokemonInfo}
+function getPokemonByType(name) {
+  return apiInstance
+    .getTypeByName(name)
+    .catch(console.error)
+}
+
+function getPokemonDescription(id) {
+  return apiInstance
+    .getPokemonSpeciesByName(id)
+    .then(result => result["flavor_text_entries"]?.find(x => x.language.name === "en")["flavor_text"])
+    .catch(console.error)
+}
+
+function getItemCategories() {
+  return apiInstance
+    .getItemCategoriesList()
+    .catch(console.error)
+}
+
+function getItemCategoryByName(name) {
+  return apiInstance
+    .getItemCategoryByName(name)
+    .catch(console.error)
+}
+
+function getItemByName(name) {
+  return apiInstance
+    .getItemByName(name)
+    .catch(console.error)
+}
+
+function getMoveCategoriesList() {
+  return apiInstance
+    .getMoveCategoriesList()
+    .catch(console.error)
+}
+
+function getMoveDescription(name) {
+  return apiInstance
+    .getMoveByName(name)
+    .then(result => result["flavor_text_entries"]?.find(x => x.language.name === "en")["flavor_text"])
+    .catch(console.error)
+}
+
+function summarizePokemonStats(stats) {
+  console.log(stats)
+  let statsArray = []
+  let stat
+   //statsArray will contain array of base stats in this order: [hp,attack,defence,sp.attack,sp.defence,speed]
+  for (stat in stats){
+    statsArray.push(stats[stat].base_stat)
+  }
+
+  return statsArray
+}
+
+export {
+  getPokemonInfo,
+  getPokemonTypes,
+  getPokemonByType,
+  getPokemonDescription,
+  getItemCategories,
+  getItemCategoryByName,
+  getItemByName,
+  getMoveCategoriesList,
+  getMoveDescription,
+  summarizePokemonStats
+  }

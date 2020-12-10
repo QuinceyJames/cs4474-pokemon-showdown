@@ -1,53 +1,70 @@
 @import "../../variables";
 
 .pokemon-search-view {
+  $color: #0F3B1B;
 
   display: flex;
-  align-items: stretch;
+  align-content: center;
   flex-direction: column;
+  flex-grow: 1;
   justify-content: space-between;
 
-  .pokemon-preview {
-    height: 55vh;
 
-    .pokemon {
-      width: 10rem;
+  .pokemon-preview {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 4rem;
+    flex-grow: 1;
+    flex-shrink: 1;
+    justify-content: space-between;
+
+    .col {
+      display: flex;
+      justify-content: center;
+
+      .pokemon {
+        width: 16rem;
+      }
     }
   }
 
-  .file-folder-scroller {
-    position: relative;
 
-    // TODO: change these values so that they work with any screen height
-    @for $i from 0 through 3 {
-      @for $j from 0 through 3 {
-        &.order-#{$i} .pokemon-file-folder {
-          &:nth-child(#{$j + 1}) {
-            $order: (($j + $i) % 4);
-            transition: all 1s ease-in-out;
-            position: absolute;
-            z-index: ($order + 1) % 4;
-            left: 0;
-            height: 100%;
-            width: 100%;
-            pointer-events: none;
+  .nav-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100vw;
+    border-bottom: 0px;
 
-            @if ($order == 0) {
-              top: 40rem;
-              opacity: 0;
-            } @else if ($order == 1) {
-              top: 0rem;
-              pointer-events: all;
-            } @else if($order == 2) {
-              top: 16rem;
-              opacity: 0.5;
-            } @else {
-              top: 40rem;
-              opacity: 0;
-            }
-          }
-        }
+    .nav-link {
+      flex-grow: 1;
+      margin-bottom: -1rem;
+      padding-bottom: 1rem;
+      text-align: center;
+      text-transform: capitalize;
+      color: #EFEFEF;
+      border: 2px solid #80847E;
+      border-radius: 1rem 1rem 0rem 0rem;
+      background-color: $color;
+
+      &.active {
+        color: #EFEFEF;
+        background: lighten($color, 10%);
       }
     }
+  }
+
+  .tab-content {
+    background-color: $color;
+
+    .tab-pane {
+      flex-wrap: nowrap;
+      width: 100vw;
+      border-bottom: 0px;
+
+      .pokemon-file-folder {
+        padding: 1rem 0;
+      }
+    }
+
   }
 }

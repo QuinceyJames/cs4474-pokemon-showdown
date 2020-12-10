@@ -5,11 +5,12 @@ import reportWebVitals from './utils/reportWebVitals';
 import {Provider} from "react-redux";
 import store from "./features/store";
 import {ROOT_ELEMENT_ID} from "./config/constants";
-import './index.scss';
 import Col from "react-bootstrap/Col";
 import Chat from "./components/chat/chat";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
+import "bootstrap/dist/css/bootstrap.min.css";
+import './index.scss';
 
 
 ReactDOM.render(
